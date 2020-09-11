@@ -1,7 +1,8 @@
-package com.example.spacextracker
+package com.example.spacextracker.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.spacextracker.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
