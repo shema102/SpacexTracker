@@ -1,0 +1,117 @@
+package com.example.spacextracker.model
+
+import com.google.gson.annotations.SerializedName
+
+data class UUID (
+	val value: String
+)
+
+data class Capsule(
+    @SerializedName("serial")
+	val serial: String,
+    @SerializedName("status")
+	val status: String, // "enum": ["unknown", "active", "retired", "destroyed"]
+    @SerializedName("dragon")
+	val dragon: UUID? = null,
+    @SerializedName("reuse_count")
+	val reuseCount: Int = 0,
+    @SerializedName("water_landings")
+	val waterLandings: Int = 0,
+    @SerializedName("land_landings")
+	val landLandings: Int = 0,
+    @SerializedName("last_update")
+	val lastUpdate: String? = null,
+    @SerializedName("launches")
+	val launches: List<UUID?>? = null,
+)
+
+data class Launch(
+	@SerializedName("flight_number")
+	val flightNumber: Int,
+	@SerializedName("name")
+	val name: String,
+	@SerializedName("date_utc")
+	val dateUtc: String,
+	@SerializedName("date_unix")
+	val dateUnix: String,
+	@SerializedName("date_local")
+	val dateLocal: String,
+	@SerializedName("date_precision")
+	val datePrecision: String, // "enum": [ "half","quarter", "year", "month","day","hour"]
+	@SerializedName("static_fire_date_utc")
+	val staticFireDateUtc: String? = null,
+	@SerializedName("static_fire_date_unix")
+	val staticFireDateUnix: String? = null,
+	@SerializedName("tdb")
+	val tdb: Boolean = false,
+	@SerializedName("net")
+	val net: Boolean = false,
+	@SerializedName("window")
+	val window: Int? = null,
+	@SerializedName("rocket")
+	val rocket: UUID? = null,
+	@SerializedName("success")
+	val success: Boolean? = null,
+	@SerializedName("failures")
+	val failures: List<Failure>,
+	@SerializedName("upcoming")
+	val upcoming: Boolean = true,
+	@SerializedName("details")
+	val details: String? = null,
+	@SerializedName("fairings")
+	val fairings: Fairings,
+	@SerializedName("crew")
+	val crew: List<UUID>,
+	@SerializedName("ships")
+	val ships: List<UUID>,
+	@SerializedName("capsules")
+	val capsules: List<UUID>,
+	@SerializedName("payloads")
+	val payloads: List<UUID>,
+	@SerializedName("launchpad")
+	val launchpad: UUID? = null,
+	@SerializedName("cores")
+	val cores: List<Core>,
+
+)
+
+data class Failure(
+	@SerializedName("time")
+	val time: Int,
+	@SerializedName("altitude")
+	val altitude: Int,
+	@SerializedName("reason")
+	val reason: String
+)
+
+data class Fairings(
+	@SerializedName("reused")
+	val reused: Boolean? = null,
+	@SerializedName("recovery_attempt")
+	val recoveryAttempt: Boolean? = null,
+	@SerializedName("recovered")
+	val recovered: Boolean? = null,
+	@SerializedName("ships")
+	val ships: List<UUID>
+)
+
+data class Core(
+	@SerializedName("core")
+	val core: UUID? = null,
+	@SerializedName("flight")
+	val flight: Int? = null,
+	@SerializedName("gridfins")
+	val gridfins: Boolean? = null,
+	@SerializedName("legs")
+	val legs: Boolean? = null,
+	@SerializedName("reused")
+	val reused: Boolean? = null,
+	@SerializedName("landing_attempt")
+	val LandingAttempt: Boolean? = null,
+	@SerializedName("landing_success")
+	val landingSuccess: Boolean? = null,
+	@SerializedName("landing_type")
+	val landingType: String? = null,
+	@SerializedName("landpad")
+	val landpad: UUID? = null,
+)
