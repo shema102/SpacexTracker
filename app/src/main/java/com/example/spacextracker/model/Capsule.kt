@@ -1,23 +1,23 @@
-package com.example.spacextracker.view.model
+package com.example.spacextracker.model
 
 import com.google.gson.annotations.SerializedName
 
 data class Capsule(
-	@SerializedName("serial")
+    @SerializedName("serial")
 	val serial: String,
-	@SerializedName("status")
+    @SerializedName("status")
 	val status: String, // "enum": ["unknown", "active", "retired", "destroyed"]
-	@SerializedName("dragon")
+    @SerializedName("dragon")
 	val dragon: UUID? = null,
-	@SerializedName("reuse_count")
+    @SerializedName("reuse_count")
 	val reuseCount: Int = 0,
-	@SerializedName("water_landings")
+    @SerializedName("water_landings")
 	val waterLandings: Int = 0,
-	@SerializedName("land_landings")
+    @SerializedName("land_landings")
 	val landLandings: Int = 0,
-	@SerializedName("last_update")
+    @SerializedName("last_update")
 	val lastUpdate: String? = null,
-	@SerializedName("launches")
+    @SerializedName("launches")
 	val launches: List<UUID?>? = null,
 )
 
