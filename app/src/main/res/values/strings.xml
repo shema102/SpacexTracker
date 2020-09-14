@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SpaceX Tracker</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="home">Home</string>
+    <string name="next_launch">Next launch</string>
+    <string name="roadster">Roadster</string>
 </resources>
