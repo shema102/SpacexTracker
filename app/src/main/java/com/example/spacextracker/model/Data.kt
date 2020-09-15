@@ -12,7 +12,7 @@ data class Capsule(
     @SerializedName("status")
     val status: String, // "enum": ["unknown", "active", "retired", "destroyed"]
     @SerializedName("dragon")
-    val dragon: UUID? = null,
+    val dragon: String? = null,
     @SerializedName("reuse_count")
     val reuseCount: Int = 0,
     @SerializedName("water_landings")
@@ -22,7 +22,7 @@ data class Capsule(
     @SerializedName("last_update")
     val lastUpdate: String? = null,
     @SerializedName("launches")
-    val launches: List<UUID?>? = null,
+    val launches: List<String?>? = null,
 )
 
 data class Launch(
@@ -49,7 +49,7 @@ data class Launch(
     @SerializedName("window")
     val window: Int? = null,
     @SerializedName("rocket")
-    val rocket: UUID? = null,
+    val rocket: String? = null,
     @SerializedName("success")
     val success: Boolean? = null,
     @SerializedName("failures")
@@ -61,15 +61,15 @@ data class Launch(
     @SerializedName("fairings")
     val fairings: Fairings,
     @SerializedName("crew")
-    val crew: List<UUID>,
+    val crew: List<String>,
     @SerializedName("ships")
-    val ships: List<UUID>,
+    val ships: List<String>,
     @SerializedName("capsules")
-    val capsules: List<UUID>,
+    val capsules: List<String>,
     @SerializedName("payloads")
-    val payloads: List<UUID>,
+    val payloads: List<String>,
     @SerializedName("launchpad")
-    val launchpad: UUID? = null,
+    val launchpad: String? = null,
     @SerializedName("cores")
     val cores: List<Core>,
     @SerializedName("links")
@@ -95,12 +95,12 @@ data class Fairings(
     @SerializedName("recovered")
     val recovered: Boolean? = null,
     @SerializedName("ships")
-    val ships: List<UUID>
+    val ships: List<String>
 )
 
 data class Core(
     @SerializedName("core")
-    val core: UUID? = null,
+    val core: String? = null,
     @SerializedName("flight")
     val flight: Int? = null,
     @SerializedName("gridfins")
@@ -116,7 +116,7 @@ data class Core(
     @SerializedName("landing_type")
     val landingType: String? = null,
     @SerializedName("landpad")
-    val landpad: UUID? = null,
+    val landpad: String? = null,
 )
 
 data class Links(
