@@ -23,6 +23,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -47,7 +56,8 @@ dependencies {
 
 // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-common-java8:$rootProject.archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
 
 
