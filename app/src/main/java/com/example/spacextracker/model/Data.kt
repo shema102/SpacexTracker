@@ -2,10 +2,6 @@ package com.example.spacextracker.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UUID(
-    val value: String
-)
-
 data class Capsule(
     @SerializedName("serial")
     val serial: String,
@@ -162,3 +158,45 @@ data class Links(
         val original: List<String>
     )
 }
+
+data class Payload(
+    @SerializedName("name")
+    val name: String? = null,
+    @SerializedName("type")
+    val type: String? = null,
+    @SerializedName("reused")
+    val reused: Boolean = false,
+    @SerializedName("name")
+    val launch: String? = null,
+    @SerializedName("customers")
+    val customers: List<String>? = null,
+    @SerializedName("nationalities")
+    val nationalities: List<String>? = null,
+    @SerializedName("manufacturers")
+    val manufacturers: List<String>? = null,
+    @SerializedName("mass_kg")
+    val mass_kg: Int? = null,
+    @SerializedName("mass_lbs")
+    val mass_lbs: Int? = null,
+    @SerializedName("orbit")
+    val orbit: String? = null,
+)
+
+data class Roadster(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("launch_date_unix")
+    val launchDataUnix: Int,
+    @SerializedName("launch_mass_kg")
+    val launchMassKg: Int,
+    @SerializedName("norad_id")
+    val noradId: Int,
+    @SerializedName("speed_kph")
+    val speedKph: Int,
+    @SerializedName("earth_distance_km")
+    val earthDistanceKm: Int,
+    @SerializedName("mars_distance_km")
+    val marsDistanceKm: Int,
+    @SerializedName("details")
+    val details: String,
+)

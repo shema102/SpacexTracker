@@ -10,8 +10,14 @@ interface SpacexApiService {
     @GET("launches/next")
     fun getNextLaunch(): Call<Launch>
 
-//    @GET("/capsules/:{id}")
-//    fun getCapsuleById(id: @Path("id") Int): Call<Capsule>
+    @GET("launches/{id}")
+    fun getLaunchById(@Path("id") id: String): Call<Launch>
+
+    @GET("payloads/{id}")
+    fun getPayloadById(@Path("id") id: String): Call<Payload>
+
+    @GET("roadster")
+    fun getRoadster(): Call<Roadster>
 
     companion object Factory {
         fun create(): SpacexApiService {
