@@ -1,4 +1,4 @@
-package com.example.spacextracker.view
+package com.example.spacextracker.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

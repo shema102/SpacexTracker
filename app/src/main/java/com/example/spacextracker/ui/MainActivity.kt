@@ -1,4 +1,4 @@
-package com.example.spacextracker.view
+package com.example.spacextracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
