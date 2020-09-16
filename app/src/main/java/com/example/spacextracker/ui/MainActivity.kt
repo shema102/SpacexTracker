@@ -10,7 +10,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.spacextracker.R
-import com.example.spacextracker.ui.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,16 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.settingsFragment -> {
-                Toast.makeText(applicationContext, "Settings", Toast.LENGTH_LONG).show()
-                true
-            }
-            R.id.aboutFragment -> {
-                Toast.makeText(applicationContext, "About", Toast.LENGTH_LONG).show()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        NavigationUI.onNavDestinationSelected(item, navController)
+        return super.onOptionsItemSelected(item)
     }
 }
