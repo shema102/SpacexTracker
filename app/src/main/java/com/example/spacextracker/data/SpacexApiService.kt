@@ -1,4 +1,4 @@
-package com.example.spacextracker.model
+package com.example.spacextracker.data
 
 import retrofit2.http.GET
 import retrofit2.Call

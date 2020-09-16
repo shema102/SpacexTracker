@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_nav"
+    app:startDestination="@id/nextLaunchFragment">
+
+    <fragment
+        android:id="@+id/nextLaunchFragment"
+        android:name="com.example.spacextracker.ui.launches.next.NextLaunchFragment"
+        android:label="next_launch_fragment"
+        tools:layout="@layout/next_launch_fragment" />
+    <fragment
+        android:id="@+id/launchesListFragment"
+        android:name="com.example.spacextracker.ui.launches.all.list.LaunchesListFragment"
+        android:label="launches_list_fragment"
+        tools:layout="@layout/launches_list_fragment" />
+    <fragment
+        android:id="@+id/lauchDetailsFragment"
+        android:name="com.example.spacextracker.ui.launches.all.details.LauchDetailsFragment"
+        android:label="lauch_details_fragment"
+        tools:layout="@layout/lauch_details_fragment" />
+    <fragment
+        android:id="@+id/roadsterFragment"
+        android:name="com.example.spacextracker.ui.launches.roadster.RoadsterFragment"
+        android:label="roadster_fragment"
+        tools:layout="@layout/roadster_fragment" />
+</navigation>

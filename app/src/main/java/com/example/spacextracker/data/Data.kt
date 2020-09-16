@@ -1,4 +1,4 @@
-package com.example.spacextracker.model
+package com.example.spacextracker.data
 
 import com.google.gson.annotations.SerializedName
 
