@@ -86,4 +86,10 @@ dependencies {
     // Material design
     implementation 'com.google.android.material:material:1.2.1'
 
+    // Better dateTime-time support even on older Android versions
+    implementation "com.jakewharton.threetenabp:threetenabp:1.2.4"
+
+    // Kodein
+    implementation "org.kodein.di:kodein-di-generic-jvm:6.5.5"
+    implementation "org.kodein.di:kodein-di-framework-android-x:6.5.5"
 }

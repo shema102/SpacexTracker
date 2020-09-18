@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 const val ROADSTER_ID = 1
 
 @Entity(tableName = "roadster")
-data class Roadster(
+data class RoadsterEntry(
     @SerializedName("details")
     val details: String,
     @SerializedName("earth_distance_km")

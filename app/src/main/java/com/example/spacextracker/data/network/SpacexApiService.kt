@@ -23,7 +23,7 @@ interface SpacexApiService {
     fun getLaunchByIdAsync(@Path("id") id: String): Deferred<LaunchEntry>
 
     @GET("roadster")
-    fun getRoadsterAsync(): Deferred<Roadster>
+    fun getRoadsterAsync(): Deferred<RoadsterEntry>
 
     @GET("payloads/{id}")
     fun getPayloadByIdAsync(@Path("id") id: String): Deferred<Payload>

@@ -9,14 +9,14 @@ import com.example.spacextracker.data.db.entity.*
 @Database(
     entities = [NextLaunch::class,
         LaunchEntry::class,
-        Roadster::class,
+        RoadsterEntry::class,
         Crew::class,
         Payload::class,
         Links::class],
     version = 1
 )
 
-abstract class LaunchDatabase : RoomDatabase() {
+abstract class SpacexDatabase : RoomDatabase() {
     abstract fun nextLaunchDao(): NextLaunchDao
     abstract fun roadsterDao(): RoadsterDao
     abstract fun launchesDao(): LaunchesDao
@@ -25,7 +25,7 @@ abstract class LaunchDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: LaunchDatabase? = null
+        private var instance: SpacexDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -35,7 +35,7 @@ abstract class LaunchDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                LaunchDatabase::class.java, "launches.db"
+                SpacexDatabase::class.java, "launches.db"
             )
                 .build()
     }
