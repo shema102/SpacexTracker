@@ -1,14 +1,26 @@
 package com.example.spacextracker.data.db.entity
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "links")
+@TypeConverters(IdListConverter::class)
 data class Links(
     @SerializedName("parch")
+    @Embedded(prefix = "patch_")
     val patch: Patch,
+
     @SerializedName("reddit")
+    @Embedded(prefix = "reddit_")
     val reddit: Reddit,
+
     @SerializedName("flickr")
+    @Embedded(prefix = "flickr_")
     val flickr: Flickr,
+
     @SerializedName("presskit")
     val presskit: String? = null,
     @SerializedName("webcast")
@@ -44,4 +56,7 @@ data class Links(
         @SerializedName("original")
         val original: List<String>
     )
+
+    @PrimaryKey(autoGenerate = true)
+    var key: Int = 0
 }

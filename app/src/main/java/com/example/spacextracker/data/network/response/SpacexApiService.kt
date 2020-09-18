@@ -1,6 +1,7 @@
 package com.example.spacextracker.data.network.response
 
 import com.example.spacextracker.data.db.entity.Launch
+import com.example.spacextracker.data.db.entity.NextLaunch
 import com.example.spacextracker.data.db.entity.Payload
 import com.example.spacextracker.data.db.entity.Roadster
 import kotlinx.coroutines.Deferred
@@ -18,7 +19,7 @@ interface SpacexApiService {
     fun getAllLaunches(): Deferred<List<Launch>>
 
     @GET("launches/next")
-    fun getNextLaunch(): Deferred<Launch>
+    fun getNextLaunch(): Deferred<NextLaunch>
 
     @GET("launches/{id}")
     fun getLaunchById(@Path("id") id: String): Deferred<Launch>

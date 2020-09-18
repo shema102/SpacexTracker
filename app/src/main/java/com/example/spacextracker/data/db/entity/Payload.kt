@@ -1,7 +1,12 @@
 package com.example.spacextracker.data.db.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "payload")
+@TypeConverters(IdListConverter::class)
 data class Payload(
     @SerializedName("name")
     val name: String? = null,
@@ -23,4 +28,7 @@ data class Payload(
     val mass_lbs: Int? = null,
     @SerializedName("orbit")
     val orbit: String? = null,
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var key: Int = 0
+}

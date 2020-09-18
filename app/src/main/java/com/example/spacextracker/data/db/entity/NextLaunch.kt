@@ -1,16 +1,19 @@
 package com.example.spacextracker.data.db.entity
 
+
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "launch_entry")
+const val NEXT_LAUNCH_ID = 0
+
+@Entity(tableName = "next_launch")
 @TypeConverters(IdListConverter::class)
-data class Launch(
+data class NextLaunch(
     @SerializedName("crew")
-    val crew: List<String>,
+    val crewId: List<String>,
     @SerializedName("date_local")
     val dateLocal: String,
     @SerializedName("date_precision")
@@ -26,7 +29,7 @@ data class Launch(
     @SerializedName("name")
     val name: String,
     @SerializedName("payloads")
-    val payloads: List<String>,
+    val payloadsId: List<String>,
     @SerializedName("rocket")
     val rocket: String,
     @SerializedName("static_fire_date_unix")
@@ -40,7 +43,7 @@ data class Launch(
     @SerializedName("links")
     @Embedded(prefix = "links_")
     val links: Links,
-){
-    @PrimaryKey(autoGenerate = true)
-    var key: Int = 0
+) {
+    @PrimaryKey(autoGenerate = false)
+    var key: Int = NEXT_LAUNCH_ID
 }
