@@ -28,6 +28,8 @@ data class Payload(
     val mass_lbs: Int? = null,
     @SerializedName("orbit")
     val orbit: String? = null,
+    @SerializedName("id")
+    val id: String,
 ){
     @PrimaryKey(autoGenerate = true)
     var key: Int = 0

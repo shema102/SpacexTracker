@@ -1,9 +1,6 @@
 package com.example.spacextracker.data.network.response
 
-import com.example.spacextracker.data.db.entity.Launch
-import com.example.spacextracker.data.db.entity.NextLaunch
-import com.example.spacextracker.data.db.entity.Payload
-import com.example.spacextracker.data.db.entity.Roadster
+import com.example.spacextracker.data.db.entity.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.Retrofit
@@ -16,19 +13,22 @@ const val BASE_URL = "https://api.spacexdata.com/v4/"
 
 interface SpacexApiService {
     @GET("launches")
-    fun getAllLaunches(): Deferred<List<Launch>>
+    fun getAllLaunchesAsync(): Deferred<List<Launch>>
 
     @GET("launches/next")
-    fun getNextLaunch(): Deferred<NextLaunch>
+    fun getNextLaunchAsync(): Deferred<NextLaunch>
 
     @GET("launches/{id}")
-    fun getLaunchById(@Path("id") id: String): Deferred<Launch>
-
-    @GET("payloads/{id}")
-    fun getPayloadById(@Path("id") id: String): Deferred<Payload>
+    fun getLaunchByIdAsync(@Path("id") id: String): Deferred<Launch>
 
     @GET("roadster")
-    fun getRoadster(): Deferred<Roadster>
+    fun getRoadsterAsync(): Deferred<Roadster>
+
+    @GET("payloads/{id}")
+    fun getPayloadByIdAsync(@Path("id") id: String): Deferred<Payload>
+
+    @GET("crew/{id}")
+    fun getCrewByIdAsync(@Path("id") id: String): Deferred<Crew>
 
     companion object Factory {
         operator fun invoke(): SpacexApiService {

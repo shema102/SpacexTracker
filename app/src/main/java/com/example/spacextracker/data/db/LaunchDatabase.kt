@@ -18,6 +18,9 @@ import com.example.spacextracker.data.db.entity.*
 abstract class LaunchDatabase : RoomDatabase() {
     abstract fun nextLaunchDao(): NextLaunchDao
     abstract fun roadsterDao(): RoadsterDao
+    abstract fun launchesDao(): LaunchesDao
+    abstract fun payloadDao(): PayloadDao
+    abstract fun crewDao(): CrewDao
 
     companion object {
         @Volatile

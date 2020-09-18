@@ -7,12 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.spacextracker.data.db.entity.NEXT_LAUNCH_ID
 import com.example.spacextracker.data.db.entity.NextLaunch
+import com.example.spacextracker.data.db.entity.Payload
 
 @Dao
-interface NextLaunchDao {
+interface PayloadDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsert(launch: NextLaunch)
 
-    @Query("select * from next_launch where `key` = $NEXT_LAUNCH_ID")
-    fun getNextLaunch(): LiveData<NextLaunch>
+    @Query("select * from payload where id = :id")
+    fun getPayloadWithId(id: String): LiveData<Payload>
 }

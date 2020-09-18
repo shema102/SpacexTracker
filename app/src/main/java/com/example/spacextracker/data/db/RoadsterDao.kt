@@ -15,9 +15,9 @@ interface RoadsterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsert(roadster: Roadster)
 
-    @Query("select * from roadster where id = $ROADSTER_ID")
+    @Query("select * from roadster where `key` = $ROADSTER_ID")
     fun getRoadsterMetric(): LiveData<MetricRoadster>
 
-    @Query("select * from roadster where id = $ROADSTER_ID")
+    @Query("select * from roadster where `key` = $ROADSTER_ID")
     fun getRoadsterImperial(): LiveData<ImperialRoadster>
 }
