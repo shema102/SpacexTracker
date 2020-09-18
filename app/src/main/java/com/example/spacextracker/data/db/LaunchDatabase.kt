@@ -15,6 +15,7 @@ import com.example.spacextracker.data.db.entity.*
         Links::class],
     version = 1
 )
+
 abstract class LaunchDatabase : RoomDatabase() {
     abstract fun nextLaunchDao(): NextLaunchDao
     abstract fun roadsterDao(): RoadsterDao
