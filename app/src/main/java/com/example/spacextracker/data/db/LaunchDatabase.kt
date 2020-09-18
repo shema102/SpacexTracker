@@ -8,7 +8,7 @@ import com.example.spacextracker.data.db.entity.*
 
 @Database(
     entities = [NextLaunch::class,
-        Launch::class,
+        LaunchEntry::class,
         Roadster::class,
         Crew::class,
         Payload::class,

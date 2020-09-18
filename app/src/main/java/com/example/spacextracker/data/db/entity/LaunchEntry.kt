@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "launch_entry")
 @TypeConverters(IdListConverter::class)
-data class Launch(
+data class LaunchEntry(
     @SerializedName("crew")
     val crew: List<String>,
     @SerializedName("date_local")
