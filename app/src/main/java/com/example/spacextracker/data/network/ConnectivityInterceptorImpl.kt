@@ -6,11 +6,8 @@ import android.net.NetworkCapabilities
 import com.example.spacextracker.internal.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ConnectivityInterceptorImpl @Inject constructor(
+class ConnectivityInterceptorImpl constructor(
     context: Context
 ) : ConnectivityInterceptor {
 
