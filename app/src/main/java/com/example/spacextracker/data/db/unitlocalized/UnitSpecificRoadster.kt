@@ -5,6 +5,4 @@ interface UnitSpecificRoadster {
     val marsDistance: Double
     val speed: Double
     val launchMass: Int
-
-
 }

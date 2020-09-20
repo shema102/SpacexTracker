@@ -11,15 +11,15 @@ import com.google.gson.annotations.SerializedName
 data class Links(
     @SerializedName("parch")
     @Embedded(prefix = "patch_")
-    val patch: Patch,
+    val patch: Patch?,
 
     @SerializedName("reddit")
     @Embedded(prefix = "reddit_")
-    val reddit: Reddit,
+    val reddit: Reddit?,
 
     @SerializedName("flickr")
     @Embedded(prefix = "flickr_")
-    val flickr: Flickr,
+    val flickr: Flickr?,
 
     @SerializedName("presskit")
     val presskit: String? = null,

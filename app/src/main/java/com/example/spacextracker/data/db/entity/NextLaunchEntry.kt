@@ -42,7 +42,7 @@ data class NextLaunch(
     val window: Int,
     @SerializedName("links")
     @Embedded(prefix = "links_")
-    val links: Links,
+    val links: Links?,
 ) {
     @PrimaryKey(autoGenerate = false)
     var key: Int = NEXT_LAUNCH_ID

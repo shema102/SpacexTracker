@@ -11,7 +11,7 @@ import com.example.spacextracker.data.db.entity.NextLaunch
 @Dao
 interface LaunchesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(launch: NextLaunch)
+    fun upsert(launch: List<LaunchEntry>)
 
     @Query("select * from launch_entry where id = :id")
     fun getLaunchWithId(id: String): LiveData<LaunchEntry>

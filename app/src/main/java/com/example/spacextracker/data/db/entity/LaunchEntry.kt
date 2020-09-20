@@ -18,17 +18,17 @@ data class LaunchEntry(
     @SerializedName("date_unix")
     val dateUnix: Int,
     @SerializedName("details")
-    val details: String,
+    val details: String?,
     @SerializedName("id")
     val id: String,
     @SerializedName("launchpad")
-    val launchpad: String,
+    val launchpad: String?,
     @SerializedName("name")
     val name: String,
     @SerializedName("payloads")
-    val payloads: List<String>,
+    val payloads: List<String>?,
     @SerializedName("rocket")
-    val rocket: String,
+    val rocket: String?,
     @SerializedName("static_fire_date_unix")
     val staticFireDateUnix: Int?,
     @SerializedName("tbd")
@@ -39,7 +39,7 @@ data class LaunchEntry(
     val window: Int,
     @SerializedName("links")
     @Embedded(prefix = "links_")
-    val links: Links,
+    val links: Links?,
 ){
     @PrimaryKey(autoGenerate = true)
     var key: Int = 0

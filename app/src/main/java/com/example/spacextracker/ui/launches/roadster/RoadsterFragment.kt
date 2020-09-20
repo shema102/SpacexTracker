@@ -7,20 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.spacextracker.R
 import com.example.spacextracker.data.network.ConnectivityInterceptorImpl
 import com.example.spacextracker.data.network.SpacexApiService
 import com.example.spacextracker.data.network.SpacexNetworkDataSourceImpl
+import com.example.spacextracker.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class RoadsterFragment : Fragment() {
+class RoadsterFragment : ScopedFragment(), KodeinAware {
+    override val kodein by closestKodein()
 
-    companion object {
-        fun newInstance() = RoadsterFragment()
-    }
+    private val viewModelFactory: RoadsterViewModelFactory by instance()
 
     private lateinit var viewModel: RoadsterViewModel
 
@@ -33,18 +38,18 @@ class RoadsterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RoadsterViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(RoadsterViewModel::class.java)
 
+        bindUi()
+    }
 
-        val apiService = SpacexApiService(ConnectivityInterceptorImpl(this.requireContext()))
-        val spacexNetworkDataSource = SpacexNetworkDataSourceImpl(apiService)
-
-        spacexNetworkDataSource.downloadedRoadsterEntry.observe(viewLifecycleOwner, Observer { roadster_text.text = it.toString() })
-
-        GlobalScope.launch(Dispatchers.Main) {
-            spacexNetworkDataSource.fetchRoadster()
-        }
+    private fun bindUi() = launch {
+        val roadster = viewModel.roadster.await()
+        roadster.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+            roadster_text.text = it.toString()
+        })
     }
 
 }
