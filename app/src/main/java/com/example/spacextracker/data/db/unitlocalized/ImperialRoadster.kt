@@ -10,5 +10,12 @@ data class ImperialRoadster (
     @ColumnInfo(name = "speedMph")
     override val speed: Double,
     @ColumnInfo(name = "launchMassLbs")
-    override val launchMass: Int
+    override val launchMass: Int,
+    override val details: String,
+    override val name: String,
+    override val noradId: Int,
+    override val orbitType: String,
+    override val periodDays: Double,
+    override val video: String,
+    override val wikipedia: String
 ): UnitSpecificRoadster
