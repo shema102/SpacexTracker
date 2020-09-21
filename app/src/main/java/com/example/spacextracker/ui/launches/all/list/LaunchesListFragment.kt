@@ -1,6 +1,5 @@
 package com.example.spacextracker.ui.launches.all.list
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
@@ -40,8 +39,8 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun bindUi() = launch {
-        val roadster = viewModel.launches.await()
-        roadster.observe(viewLifecycleOwner, {
+        val launches = viewModel.launches.await()
+        launches.observe(viewLifecycleOwner, {
             if (it == null) return@observe
             launches_list.text = it.map { item -> item.links?.youtubeId ?: "None" }
                 .toString()

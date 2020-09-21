@@ -5,4 +5,5 @@
     <string name="all">All Launches</string>
     <string name="next_launch">Next launch</string>
     <string name="roadster">Roadster</string>
+    <string name="loading">Loading</string>
 </resources>

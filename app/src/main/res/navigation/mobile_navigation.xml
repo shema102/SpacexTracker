@@ -19,7 +19,7 @@
         android:id="@+id/lauchDetailsFragment"
         android:name="com.example.spacextracker.ui.launches.all.details.LauchDetailsFragment"
         android:label="lauch_details_fragment"
-        tools:layout="@layout/lauch_details_fragment" />
+        tools:layout="@layout/launch_details_fragment" />
     <fragment
         android:id="@+id/roadsterFragment"
         android:name="com.example.spacextracker.ui.launches.roadster.RoadsterFragment"

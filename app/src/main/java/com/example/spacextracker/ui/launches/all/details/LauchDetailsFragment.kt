@@ -20,7 +20,7 @@ class LauchDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.lauch_details_fragment, container, false)
+        return inflater.inflate(R.layout.launch_details_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

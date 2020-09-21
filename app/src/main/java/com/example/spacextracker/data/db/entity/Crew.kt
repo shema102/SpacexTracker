@@ -3,6 +3,7 @@ package com.example.spacextracker.data.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.spacextracker.data.db.entity.converters.IdListConverter
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "crew")

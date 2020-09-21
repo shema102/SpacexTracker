@@ -3,9 +3,7 @@ package com.example.spacextracker.data.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.spacextracker.data.db.entity.LaunchEntry
-import com.example.spacextracker.data.db.entity.NextLaunch
-import com.example.spacextracker.data.db.entity.RoadsterEntry
+import com.example.spacextracker.data.db.entity.*
 import com.example.spacextracker.internal.NoConnectivityException
 
 class SpacexNetworkDataSourceImpl(
@@ -21,6 +19,24 @@ class SpacexNetworkDataSourceImpl(
             val fetchedNextLaunch = spacexApiService
                 .getNextLaunchAsync()
                 .await()
+
+            val fetchedCrew = fetchedNextLaunch.crewId
+                .map { crewId ->
+                    spacexApiService
+                        .getCrewByIdAsync(crewId)
+                        .await()
+                }.toList()
+
+            val fetchedPayloads = fetchedNextLaunch.payloadsId
+                .map { payloadId ->
+                    spacexApiService
+                        .getPayloadByIdAsync(payloadId)
+                        .await()
+                }.toList()
+
+            fetchedNextLaunch.crewList = fetchedCrew
+            fetchedNextLaunch.payloadsList = fetchedPayloads
+
             _downloadedNextLaunch.postValue(fetchedNextLaunch)
         } catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection", e)
