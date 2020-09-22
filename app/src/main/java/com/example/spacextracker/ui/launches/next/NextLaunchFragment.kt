@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.spacextracker.R
+import com.example.spacextracker.data.db.entity.LaunchEntry
+import com.example.spacextracker.data.db.entity.NextLaunch
 import com.example.spacextracker.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.next_launch_fragment.*
 import kotlinx.coroutines.launch
@@ -48,12 +51,22 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             mission_details.text = it.details
             launch_date.text = timeFromTimestamp(it.dateUnix)
             payload_name.text = it.payloadsList[0].toString()
+            updateMissionImage(it)
         })
     }
 
-    private fun timeFromTimestamp(timestamp: Int): String{
+    private fun timeFromTimestamp(timestamp: Int): String {
         val milis = timestamp.toLong() * 1000
         val date = Date(milis)
         return SimpleDateFormat("hh:mm MM.dd.yyyy").format(date)
+    }
+
+    private fun updateMissionImage(launchEntry: NextLaunch) {
+        Glide.with(this)
+            .load(
+                launchEntry.links?.patch?.small
+                    ?: "https://https://www.spacex.com/static/images/share.jpg"
+            )
+            .into(imageView_mission_badge)
     }
 }
