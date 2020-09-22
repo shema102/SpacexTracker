@@ -1,20 +1,20 @@
 package com.example.spacextracker.ui.launches.all.details
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.spacextracker.R
 
-class LauchDetailsFragment : Fragment() {
+class LaunchDetailsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = LauchDetailsFragment()
+        fun newInstance() = LaunchDetailsFragment()
     }
 
-    private lateinit var viewModel: LauchDetailsViewModel
+    private lateinit var viewModel: LaunchDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class LauchDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LauchDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(LaunchDetailsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

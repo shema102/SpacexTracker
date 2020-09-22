@@ -17,7 +17,7 @@
         tools:layout="@layout/launches_list_fragment" />
     <fragment
         android:id="@+id/lauchDetailsFragment"
-        android:name="com.example.spacextracker.ui.launches.all.details.LauchDetailsFragment"
+        android:name="com.example.spacextracker.ui.launches.all.details.LaunchDetailsFragment"
         android:label="lauch_details_fragment"
         tools:layout="@layout/launch_details_fragment" />
     <fragment

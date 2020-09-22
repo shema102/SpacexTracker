@@ -34,6 +34,10 @@ android {
     }
 }
 
+androidExtensions{
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -88,4 +92,8 @@ dependencies {
     // Kodein
     implementation "org.kodein.di:kodein-di-generic-jvm:6.5.5"
     implementation "org.kodein.di:kodein-di-framework-android-x:6.5.5"
+
+    // Groupie
+    implementation "com.xwray:groupie:2.1.0"
+    implementation "com.xwray:groupie-kotlin-android-extensions:2.1.0"
 }

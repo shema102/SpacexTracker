@@ -1,15 +1,16 @@
-package com.example.spacextracker.ui.launches.all.list
+package com.example.spacextracker.ui.launches.all.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.spacextracker.data.repository.SpacexRepository
 
-class LaunchesListViewModelFactory(
+class LaunchDetailsViewModelFactory(
+    private val launchId: String,
     private val spacexRepository: SpacexRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LaunchesListViewModel(spacexRepository) as T
+        return LaunchDetailsViewModel(spacexRepository, launchId) as T
     }
 }

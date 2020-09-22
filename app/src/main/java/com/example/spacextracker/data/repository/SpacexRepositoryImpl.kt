@@ -58,6 +58,10 @@ class SpacexRepositoryImpl(
         }
     }
 
+    override suspend fun getLaunchWithId(id: String): LiveData<LaunchEntry> {
+        return launchesDao.getLaunchWithId(id)
+    }
+
     private fun persistFetchedNextLaunch(fetchedNextLaunch: NextLaunch) {
         GlobalScope.launch(Dispatchers.IO) {
             nextLaunchDao.upsert(fetchedNextLaunch)

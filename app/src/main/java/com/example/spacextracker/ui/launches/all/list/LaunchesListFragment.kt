@@ -1,14 +1,19 @@
 package com.example.spacextracker.ui.launches.all.list
 
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
+import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.spacextracker.R
+import com.example.spacextracker.data.db.entity.LaunchEntry
 import com.example.spacextracker.ui.base.ScopedFragment
+import com.xwray.groupie.GroupAdapter
 import kotlinx.android.synthetic.main.launches_list_fragment.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -33,17 +38,38 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
         viewModel =
             ViewModelProvider(this, viewModelFactory)
                 .get(LaunchesListViewModel::class.java)
-
-        launches_list.movementMethod = ScrollingMovementMethod()
         bindUi()
     }
 
-    private fun bindUi() = launch {
+    private fun bindUi() = launch(Dispatchers.Main) {
         val launches = viewModel.launches.await()
-        launches.observe(viewLifecycleOwner, {
-            if (it == null) return@observe
-            launches_list.text = it.map { item -> item.links?.youtubeId ?: "None" }
-                .toString()
+        launches.observe(viewLifecycleOwner, {launchEntries ->
+            if (launchEntries == null) return@observe
+
+            group_loading.visibility = View.GONE
+
+            initRecyclerView(launchEntries.toLaunchItems())
         })
+    }
+
+    private fun List<LaunchEntry>.toLaunchItems(): List<LaunchItem>{
+        return this.map {
+            LaunchItem(it)
+        }
+    }
+
+    private fun initRecyclerView(items: List<LaunchItem>) {
+        val groupAdapter = GroupAdapter<ViewHolder>().apply {
+            addAll(items)
+        }
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@LaunchesListFragment.context)
+            adapter = groupAdapter
+        }
+//        groupAdapter.setOnItemClickListener { item, view ->
+//            (item as? LaunchEntry)?.let {
+//
+//            }
+//        }
     }
 }

@@ -17,7 +17,8 @@ import com.google.gson.annotations.SerializedName
 )
 data class LaunchEntry(
     @SerializedName("crew")
-    val crew: List<String>,
+    val crewId: List<String>,
+    var crewList: List<Crew>,
     @SerializedName("date_local")
     val dateLocal: String,
     @SerializedName("date_precision")
@@ -26,6 +27,7 @@ data class LaunchEntry(
     val dateUnix: Int,
     @SerializedName("details")
     val details: String?,
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     val id: String,
     @SerializedName("launchpad")
@@ -33,7 +35,8 @@ data class LaunchEntry(
     @SerializedName("name")
     val name: String,
     @SerializedName("payloads")
-    val payloads: List<String>?,
+    val payloadsId: List<String>,
+    var payloadsList: List<Payload>,
     @SerializedName("rocket")
     val rocket: String?,
     @SerializedName("static_fire_date_unix")
@@ -48,6 +51,6 @@ data class LaunchEntry(
     @Embedded(prefix = "links_")
     val links: Links?,
 ) {
-    @PrimaryKey(autoGenerate = true)
-    var key: Int = 0
+//    @PrimaryKey(autoGenerate = true)
+//    var key: Int = 0
 }

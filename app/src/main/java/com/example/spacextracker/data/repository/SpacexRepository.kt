@@ -11,4 +11,6 @@ interface SpacexRepository {
     suspend fun getLaunches(): LiveData<List<LaunchEntry>>
 
     suspend fun getRoadster(metric: Boolean): LiveData<out UnitSpecificRoadster>
+
+    suspend fun getLaunchWithId(id: String): LiveData<LaunchEntry>
 }

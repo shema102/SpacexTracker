@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "links")
 @TypeConverters(IdListConverter::class)
 data class Links(
-    @SerializedName("parch")
+    @SerializedName("patch")
     @Embedded(prefix = "patch_")
     val patch: Patch?,
 
@@ -23,32 +23,32 @@ data class Links(
     val flickr: Flickr?,
 
     @SerializedName("presskit")
-    val presskit: String? = null,
+    val presskit: String?,
     @SerializedName("webcast")
-    val webcast: String? = null,
+    val webcast: String?,
     @SerializedName("youtube_id")
-    val youtubeId: String? = null,
+    val youtubeId: String?,
     @SerializedName("article")
-    val article: String? = null,
+    val article: String?,
     @SerializedName("wikipedia")
-    val wikipedia: String? = null,
+    val wikipedia: String?,
 ) {
     data class Patch(
         @SerializedName("small")
-        val small: String? = null,
+        val small: String?,
         @SerializedName("large")
-        val large: String? = null
+        val large: String?
     )
 
     data class Reddit(
         @SerializedName("campaign")
-        val campaign: String? = null,
+        val campaign: String?,
         @SerializedName("launch")
-        val launch: String? = null,
+        val launch: String?,
         @SerializedName("media")
-        val media: String? = null,
+        val media: String?,
         @SerializedName("recovery")
-        val recovery: String? = null
+        val recovery: String?
     )
 
     data class Flickr(

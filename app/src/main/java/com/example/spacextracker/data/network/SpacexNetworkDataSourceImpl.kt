@@ -27,6 +27,8 @@ class SpacexNetworkDataSourceImpl(
                         .await()
                 }.toList()
 
+            fetchedNextLaunch.crewList = fetchedCrew
+
             val fetchedPayloads = fetchedNextLaunch.payloadsId
                 .map { payloadId ->
                     spacexApiService
@@ -34,7 +36,6 @@ class SpacexNetworkDataSourceImpl(
                         .await()
                 }.toList()
 
-            fetchedNextLaunch.crewList = fetchedCrew
             fetchedNextLaunch.payloadsList = fetchedPayloads
 
             _downloadedNextLaunch.postValue(fetchedNextLaunch)
@@ -52,6 +53,28 @@ class SpacexNetworkDataSourceImpl(
             val fetchedLaunches = spacexApiService
                 .getAllLaunchesAsync()
                 .await()
+
+            fetchedLaunches.forEach {
+                val fetchedCrew = it.crewId
+                    .map { crewId ->
+                        spacexApiService
+                            .getCrewByIdAsync(crewId)
+                            .await()
+                    }.toList()
+
+                it.crewList = fetchedCrew
+
+                val fetchedPayloads = it.payloadsId
+                    .map { payloadId ->
+                        spacexApiService
+                            .getPayloadByIdAsync(payloadId)
+                            .await()
+                    }.toList()
+
+                it.payloadsList = fetchedPayloads
+            }
+
+
             _downloadedLaunches.postValue(fetchedLaunches)
         } catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection", e)
