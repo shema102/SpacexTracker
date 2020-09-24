@@ -7,30 +7,30 @@
 
     <fragment
         android:id="@+id/nextLaunchFragment"
-        android:name="com.example.spacextracker.ui.launches.next.NextLaunchFragment"
+        android:name="com.shema102.spacextracker.ui.launches.next.NextLaunchFragment"
         android:label="next_launch_fragment"
         tools:layout="@layout/next_launch_fragment" />
     <fragment
         android:id="@+id/launchesListFragment"
-        android:name="com.example.spacextracker.ui.launches.all.list.LaunchesListFragment"
+        android:name="com.shema102.spacextracker.ui.launches.all.list.LaunchesListFragment"
         android:label="launches_list_fragment"
         tools:layout="@layout/launches_list_fragment" />
     <fragment
         android:id="@+id/lauchDetailsFragment"
-        android:name="com.example.spacextracker.ui.launches.all.details.LaunchDetailsFragment"
+        android:name="com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment"
         android:label="lauch_details_fragment"
         tools:layout="@layout/launch_details_fragment" />
     <fragment
         android:id="@+id/roadsterFragment"
-        android:name="com.example.spacextracker.ui.launches.roadster.RoadsterFragment"
+        android:name="com.shema102.spacextracker.ui.launches.roadster.RoadsterFragment"
         android:label="roadster_fragment"
         tools:layout="@layout/roadster_fragment" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.spacextracker.ui.about.AboutFragment"
+        android:name="com.shema102.spacextracker.ui.about.AboutFragment"
         android:label="AboutFragment" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.spacextracker.ui.settings.SettingsFragment"
+        android:name="com.shema102.spacextracker.ui.settings.SettingsFragment"
         android:label="SettingsFragment" />
 </navigation>
