@@ -22,15 +22,16 @@ class LaunchItem(
     override fun getLayout(): Int = R.layout.launch_item
 
     private fun ViewHolder.updateLaunchDate() {
-        val launchDate: String = (launchEntry.staticFireDateUnix?.let { dateTimeFromTimestamp(it) } ?: "No info").toString()
+        val launchDate: String = (launchEntry.staticFireDateUnix?.let { dateTimeFromTimestamp(it) }
+            ?: "No info").toString()
         textView_launch_date.text = launchDate
     }
 
     private fun ViewHolder.updateMissionImage() {
         Glide.with(this.containerView)
             .load(
-                launchEntry.links?.patch?.small
-                    ?: "https://https://www.spacex.com/static/images/share.jpg"
+                launchEntry.links?.patch?.small // if image is null load from resources
+                    ?: R.drawable.ic_default_spacex_badge
             )
             .into(imageView_mission_badge)
     }
