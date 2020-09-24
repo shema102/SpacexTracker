@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.shema102.spacextracker.R
@@ -40,6 +41,9 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(RoadsterViewModel::class.java)
+
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Musk's Roadster"
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
 
         bindUi()
     }

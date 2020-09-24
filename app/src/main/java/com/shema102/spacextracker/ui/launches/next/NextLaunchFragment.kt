@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
@@ -35,7 +36,10 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(NextLaunchViewModel::class.java)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Next launch"
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
         bindUi()
+
     }
 
     private fun bindUi() = launch {

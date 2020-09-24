@@ -5,6 +5,7 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shema102.spacextracker.R
@@ -37,6 +38,10 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
         viewModel =
             ViewModelProvider(this, viewModelFactory)
                 .get(LaunchesListViewModel::class.java)
+
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "All launches"
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
+
         bindUi()
     }
 
