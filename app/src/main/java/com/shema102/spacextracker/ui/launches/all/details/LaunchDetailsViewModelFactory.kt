@@ -11,6 +11,6 @@ class LaunchDetailsViewModelFactory(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LaunchDetailsViewModel(spacexRepository, launchId) as T
+        return LaunchDetailsViewModel(launchId, spacexRepository) as T
     }
 }

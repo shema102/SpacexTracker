@@ -9,13 +9,11 @@ import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFact
 import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
 import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.provider
-import org.kodein.di.generic.singleton
+import org.kodein.di.generic.*
 
 class SpacexApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
@@ -44,6 +42,12 @@ class SpacexApplication : Application(), KodeinAware {
         bind() from provider { RoadsterViewModelFactory(instance()) }
         bind() from provider { NextLaunchViewModelFactory(instance()) }
         bind() from provider { LaunchesListViewModelFactory(instance()) }
+        bind() from factory() { launchId: String ->
+            LaunchDetailsViewModelFactory(
+                launchId,
+                instance()
+            )
+        }
     }
 
     override fun onCreate() {

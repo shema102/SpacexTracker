@@ -50,7 +50,4 @@ data class LaunchEntry(
     @SerializedName("links")
     @Embedded(prefix = "links_")
     val links: Links?,
-) {
-//    @PrimaryKey(autoGenerate = true)
-//    var key: Int = 0
-}
+)

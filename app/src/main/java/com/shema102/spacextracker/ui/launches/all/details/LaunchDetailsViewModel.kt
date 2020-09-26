@@ -5,12 +5,11 @@ import com.shema102.spacextracker.data.repository.SpacexRepository
 import com.shema102.spacextracker.internal.lazyDeferred
 
 class LaunchDetailsViewModel(
-    private val spacexRepository: SpacexRepository,
-    private val launchId: String
-
+    private val launchId: String,
+    private val spacexRepository: SpacexRepository
 ) : ViewModel() {
 
-    val launches by lazyDeferred {
+    val launch by lazyDeferred {
         spacexRepository.getLaunchWithId(launchId)
     }
 }

@@ -14,12 +14,20 @@
         android:id="@+id/launchesListFragment"
         android:name="com.shema102.spacextracker.ui.launches.all.list.LaunchesListFragment"
         android:label="launches_list_fragment"
-        tools:layout="@layout/launches_list_fragment" />
+        tools:layout="@layout/launches_list_fragment">
+        <action
+            android:id="@+id/actionDetail"
+            app:destination="@id/lauchDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/lauchDetailsFragment"
         android:name="com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment"
         android:label="lauch_details_fragment"
-        tools:layout="@layout/launch_details_fragment" />
+        tools:layout="@layout/launch_details_fragment">
+        <argument
+            android:name="idString"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/roadsterFragment"
         android:name="com.shema102.spacextracker.ui.launches.roadster.RoadsterFragment"

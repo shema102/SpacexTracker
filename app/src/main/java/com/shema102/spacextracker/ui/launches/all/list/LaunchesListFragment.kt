@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.ui.base.ScopedFragment
+import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment
 import com.xwray.groupie.GroupAdapter
 import kotlinx.android.synthetic.main.launches_list_fragment.*
 import kotlinx.coroutines.Dispatchers
@@ -70,10 +72,15 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
             layoutManager = LinearLayoutManager(this@LaunchesListFragment.context)
             adapter = groupAdapter
         }
-//        groupAdapter.setOnItemClickListener { item, view ->
-//            (item as? LaunchEntry)?.let {
-//
-//            }
-//        }
+        groupAdapter.setOnItemClickListener { item, view ->
+            (item as? LaunchItem)?.let {
+                showLaunchDetails(it.launchEntry.id, view)
+            }
+        }
+    }
+
+    private fun showLaunchDetails(id: String, view: View){
+        val actionDetail = LaunchesListFragmentDirections.actionDetail(id)
+        Navigation.findNavController(view).navigate(actionDetail)
     }
 }

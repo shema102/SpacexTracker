@@ -9,7 +9,7 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.launch_item.*
 
 class LaunchItem(
-    private val launchEntry: LaunchEntry
+    val launchEntry: LaunchEntry
 ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
