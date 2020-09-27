@@ -12,13 +12,6 @@
         android:paddingTop="25dp"
         tools:context=".ui.launches.next.NextLaunchFragment">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4" />
-
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_loading"
             android:layout_width="wrap_content"
@@ -58,12 +51,19 @@
             app:layout_constraintTop_toBottomOf="@+id/progressBar_loading"
             app:layout_constraintVertical_bias="0.0" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:constraint_referenced_ids="imageView_mission_badge, textView_mission_name, textView_mission_details"
+            app:constraint_referenced_ids="imageView_mission_badge, textView_mission_name, @+id/textView_mission_details_text"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,19 +73,17 @@
             android:layout_height="0dp"
             android:contentDescription="Mission Badge"
             android:src="@drawable/ic_default_spacex_badge"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent="0.3" />
-
         <TextView
             android:id="@+id/textView_mission_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLength="20"
             android:maxLines="1"
@@ -94,8 +92,6 @@
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_mission_badge"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.761"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/imageView_mission_badge"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -104,31 +100,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="12dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@drawable/back_of_element"
             android:text="Mission details"
+            android:gravity="center"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_mission_badge"
-            app:layout_constraintVertical_bias="0.057" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView_mission_badge" />
+
+        <TextView
+            android:id="@+id/textView_mission_details_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/back_of_element"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_mission_details" />
 
         <TextView
             android:id="@+id/textView_launch_date"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="12dp"
             android:text="Launch date"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.986"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_mission_name"
-            app:layout_constraintVertical_bias="0.027" />
-
+            app:layout_constraintTop_toBottomOf="@+id/textView_mission_name" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_payload"
@@ -144,42 +157,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
-            android:text="Payload"
+            android:background="@drawable/back_of_element"
+            android:gravity="center"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="Payload details"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_mission_details" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_mission_details_text" />
 
         <TextView
-            android:id="@+id/textView_payload_name2"
+            android:id="@+id/textView_payload_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="12dp"
-            android:text="Payload"
+            android:background="@drawable/back_of_element"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_payload_name" />
-
-        <TextView
-            android:id="@+id/textView_last_update_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="12dp"
-            android:text="Last update"
-            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_payload_name2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

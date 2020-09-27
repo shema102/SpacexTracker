@@ -15,7 +15,8 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import com.shema102.spacextracker.internal.dateTimeFromTimestamp
+import java.text.DateFormat
+import java.util.*
 
 class NextLaunchFragment : ScopedFragment(), KodeinAware {
     override val kodein by closestKodein()
@@ -50,9 +51,12 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             group_loading.visibility = View.GONE
             content.visibility = View.VISIBLE
             textView_mission_name.text = it.name
-            textView_mission_details.text = it.details
-            textView_launch_date.text = dateTimeFromTimestamp(it.dateUnix)
-            textView_payload_name.text = it.payloadsList[0].toString()
+
+            updateLaunchDate(it)
+
+            textView_mission_details_text.text = it.details
+
+            textView_payload_details.text = it.payloadsList[0].toString()
             updateMissionImage(it)
         })
     }
@@ -61,8 +65,42 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
         Glide.with(this)
             .load(
                 launchEntry.links?.patch?.small
-                    ?: "https://https://www.spacex.com/static/images/share.jpg"
+                    ?: R.drawable.ic_default_spacex_badge
             )
             .into(imageView_mission_badge)
+    }
+
+    private fun updateLaunchDate(launchEntry: NextLaunch) {
+        // Set as true if the date is "No earlier than"
+        val net = launchEntry.net
+        // Set as true if date is "To be determined"
+        val tbd = launchEntry.tbd
+        // Set to one of ("half","quarter","year","month","day","hour")
+        val datePrecision: String = launchEntry.datePrecision
+
+        // converting unix timestamp to Date
+        val milliseconds = launchEntry.dateUnix.toLong() * 1000
+        val date = Date(milliseconds)
+
+        var dateTime: String = if (tbd) {
+            "TBD"
+        } else {
+            when (datePrecision) {
+                "half",
+                "quarter",
+                "year",
+                "month" -> DateFormat.getDateInstance(DateFormat.MEDIUM).format(date)
+                "day",
+                "hour" -> DateFormat.getTimeInstance(DateFormat.SHORT).format(date) + " " +
+                        DateFormat.getDateInstance(DateFormat.SHORT).format(date)
+                else -> "TBD"
+            }
+        }
+
+        if (net){
+            dateTime = "No earlier than $dateTime"
+        }
+
+        textView_launch_date.text = dateTime
     }
 }

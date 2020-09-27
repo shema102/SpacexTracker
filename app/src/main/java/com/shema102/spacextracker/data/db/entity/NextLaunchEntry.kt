@@ -28,6 +28,8 @@ data class NextLaunch(
     val datePrecision: String,
     @SerializedName("date_unix")
     val dateUnix: Int,
+    @SerializedName("net")
+    val net: Boolean,
     @SerializedName("details")
     val details: String,
     @SerializedName("id")

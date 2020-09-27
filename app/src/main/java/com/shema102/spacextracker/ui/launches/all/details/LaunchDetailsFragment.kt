@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.internal.IdNotFoundException
@@ -49,6 +50,12 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
     }
 
     fun bindUi()= launch(Dispatchers.Main) {
+        val launch = viewModel.launch.await()
 
+        launch.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+
+            text.text = it.name
+        })
     }
 }
