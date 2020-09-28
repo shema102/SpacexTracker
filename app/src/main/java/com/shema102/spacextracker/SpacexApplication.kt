@@ -1,6 +1,7 @@
 package com.shema102.spacextracker
 
 import android.app.Application
+import androidx.preference.PreferenceManager
 import com.shema102.spacextracker.data.db.SpacexDatabase
 import com.shema102.spacextracker.data.network.*
 import com.shema102.spacextracker.data.repository.SpacexRepository
@@ -9,6 +10,8 @@ import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFact
 import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
 import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.shema102.spacextracker.data.provider.UnitProvider
+import com.shema102.spacextracker.data.provider.UnitProviderImpl
 import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -38,8 +41,9 @@ class SpacexApplication : Application(), KodeinAware {
                 instance()
             )
         }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
 
-        bind() from provider { RoadsterViewModelFactory(instance()) }
+        bind() from provider { RoadsterViewModelFactory(instance(), instance()) }
         bind() from provider { NextLaunchViewModelFactory(instance()) }
         bind() from provider { LaunchesListViewModelFactory(instance()) }
         bind() from factory() { launchId: String ->
@@ -53,5 +57,6 @@ class SpacexApplication : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

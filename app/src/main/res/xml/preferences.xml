@@ -3,7 +3,6 @@
     <PreferenceCategory android:title="General">
         <SwitchPreference
             android:defaultValue="false"
-            android:disableDependentsState="true"
             android:key="USE_DARK_MODE"
             android:title="Dark mode" />
 
