@@ -10,9 +10,11 @@ import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFact
 import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
 import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.data.provider.UnitProviderImpl
 import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
+import com.shema102.spacextracker.ui.launches.next.PayloadItem
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

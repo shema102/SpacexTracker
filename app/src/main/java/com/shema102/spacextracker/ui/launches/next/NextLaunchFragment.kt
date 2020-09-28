@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.NextLaunch
+import com.shema102.spacextracker.data.db.entity.Payload
+import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.ui.base.ScopedFragment
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.next_launch_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -24,6 +29,8 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
     private val viewModelFactory: NextLaunchViewModelFactory by instance()
 
     private lateinit var viewModel: NextLaunchViewModel
+
+    private val unitProvider: UnitProvider by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,17 +54,16 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
         val nextLaunch = viewModel.nextLaunch.await()
         nextLaunch.observe(viewLifecycleOwner, {
             if (it == null) return@observe
-
+            updateMissionImage(it)
             group_loading.visibility = View.GONE
             content.visibility = View.VISIBLE
             textView_mission_name.text = it.name
-
             updateLaunchDate(it)
-
             textView_mission_details_text.text = it.details
 
-            textView_payload_details.text = it.payloadsList[0].toString()
-            updateMissionImage(it)
+            if (it.payloadsList.isNotEmpty()) {
+                initPayloadRecyclerView(it.payloadsList.toPayloadItems())
+            }
         })
     }
 
@@ -97,10 +103,26 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             }
         }
 
-        if (net){
+        if (net) {
             dateTime = "No earlier than $dateTime"
         }
 
         textView_launch_date.text = dateTime
+    }
+
+    private fun initPayloadRecyclerView(items: List<PayloadItem>) {
+        val groupAdapter = GroupAdapter<ViewHolder>().apply {
+            addAll(items)
+        }
+        recyclerView_payload.apply {
+            layoutManager = LinearLayoutManager(this@NextLaunchFragment.context)
+            adapter = groupAdapter
+        }
+    }
+
+    private fun List<Payload>.toPayloadItems(): List<PayloadItem> {
+        return this.map {
+            PayloadItem(it, unitProvider)
+        }
     }
 }

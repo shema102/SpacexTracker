@@ -170,17 +170,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_mission_details_text" />
 
-        <TextView
-            android:id="@+id/textView_payload_details"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_payload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/back_of_element"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
