@@ -9,7 +9,7 @@
         android:id="@+id/nextLaunchFragment"
         android:name="com.shema102.spacextracker.ui.launches.next.NextLaunchFragment"
         android:label="next_launch_fragment"
-        tools:layout="@layout/next_launch_fragment" />
+        tools:layout="@layout/launch_details_fragment" />
     <fragment
         android:id="@+id/launchesListFragment"
         android:name="com.shema102.spacextracker.ui.launches.all.list.LaunchesListFragment"

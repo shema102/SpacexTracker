@@ -1,4 +1,4 @@
-package com.shema102.spacextracker.ui.launches.next
+package com.shema102.spacextracker.ui.launches.common
 
 
 import androidx.core.text.HtmlCompat

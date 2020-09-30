@@ -13,9 +13,10 @@ import com.shema102.spacextracker.data.db.entity.NextLaunch
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.ui.base.ScopedFragment
+import com.shema102.spacextracker.ui.launches.common.PayloadItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.next_launch_fragment.*
+import kotlinx.android.synthetic.main.launch_details_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -36,7 +37,7 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.next_launch_fragment, container, false)
+        return inflater.inflate(R.layout.launch_details_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
