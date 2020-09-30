@@ -1,6 +1,7 @@
 package com.shema102.spacextracker.ui.launches.next
 
 
+import androidx.core.text.HtmlCompat
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
@@ -16,8 +17,8 @@ class PayloadItem(
 ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
-            textView_payload_name.text = payload.name
-            textView_payload_type.text = payload.type
+            updatePayloadName()
+            updatePayloadType()
             updatePayloadManufacturers()
             updatePayloadCustomers()
             updatePayloadMass()
@@ -26,14 +27,33 @@ class PayloadItem(
 
     override fun getLayout(): Int = R.layout.payload_details_item
 
+    private fun ViewHolder.updatePayloadName() {
+        val name: String = payload.name ?: "No info"
+        textView_payload_name.text =
+            HtmlCompat.fromHtml("<b>Name:</b> $name", HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+
+    private fun ViewHolder.updatePayloadType() {
+        val type: String = payload.type ?: "No info"
+        textView_payload_type.text =
+            HtmlCompat.fromHtml("<b>Type:</b> $type", HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+
     private fun ViewHolder.updatePayloadManufacturers() {
-        val manufacturers: String = payload.manufacturers?.joinToString(separator = ", ") ?: ""
-        textView_payload_manufacturers.text = manufacturers
+        val manufacturers: String =
+            payload.manufacturers?.joinToString(separator = ", ") ?: "No info"
+        textView_payload_manufacturers.text = HtmlCompat.fromHtml(
+            "<b>Manufacturers:</b> $manufacturers",
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
     }
 
     private fun ViewHolder.updatePayloadCustomers() {
-        val launchDate: String = payload.customers?.joinToString(separator = ", ") ?: ""
-        textView_payload_customers.text = launchDate
+        val customers: String = payload.customers?.joinToString(separator = ", ") ?: "No info"
+        textView_payload_customers.text = HtmlCompat.fromHtml(
+            "<b>Customers:</b> $customers",
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
     }
 
     private fun ViewHolder.updatePayloadMass() {
@@ -44,7 +64,10 @@ class PayloadItem(
                 "${payload.mass_lbs.toString()} lbs"
             }
 
-        textView_payload_mass.text = payloadMass
+        textView_payload_mass.text = HtmlCompat.fromHtml(
+            "<b>Mass:</b> $payloadMass",
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
     }
 
 
