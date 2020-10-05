@@ -12,5 +12,5 @@ interface UnitSpecificRoadster {
     val periodDays: Double
     val video: String
     val wikipedia: String
-
+//    val images: List<String>
 }

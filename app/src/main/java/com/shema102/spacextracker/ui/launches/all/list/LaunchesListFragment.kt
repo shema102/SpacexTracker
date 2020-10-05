@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.ui.base.ScopedFragment
-import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment
 import com.xwray.groupie.GroupAdapter
 import kotlinx.android.synthetic.main.launches_list_fragment.*
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +48,7 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUi() = launch(Dispatchers.Main) {
         val launches = viewModel.launches.await()
-        launches.observe(viewLifecycleOwner, {launchEntries ->
+        launches.observe(viewLifecycleOwner, { launchEntries ->
             if (launchEntries == null) return@observe
 
             group_loading.visibility = View.GONE
@@ -58,7 +57,7 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
         })
     }
 
-    private fun List<LaunchEntry>.toLaunchItems(): List<LaunchItem>{
+    private fun List<LaunchEntry>.toLaunchItems(): List<LaunchItem> {
         return this.map {
             LaunchItem(it)
         }
@@ -79,7 +78,7 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
         }
     }
 
-    private fun showLaunchDetails(id: String, view: View){
+    private fun showLaunchDetails(id: String, view: View) {
         val actionDetail = LaunchesListFragmentDirections.actionDetail(id)
         Navigation.findNavController(view).navigate(actionDetail)
     }

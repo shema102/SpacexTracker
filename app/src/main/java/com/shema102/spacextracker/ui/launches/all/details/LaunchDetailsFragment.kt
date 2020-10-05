@@ -51,7 +51,9 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
         }
         val launchId: String = safeArgs?.idString ?: throw IdNotFoundException()
 
-        viewModel = ViewModelProvider(this, viewModelFactoryInstanceFactory(launchId)).get(LaunchDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactoryInstanceFactory(launchId)).get(
+            LaunchDetailsViewModel::class.java
+        )
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = "Launch details"
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
@@ -60,8 +62,8 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun bindUi() = launch {
-        val nextLaunch = viewModel.launch.await()
-        nextLaunch.observe(viewLifecycleOwner, {
+        val launch = viewModel.launch.await()
+        launch.observe(viewLifecycleOwner, {
             if (it == null) return@observe
             updateMissionImage(it)
             group_loading.visibility = View.GONE

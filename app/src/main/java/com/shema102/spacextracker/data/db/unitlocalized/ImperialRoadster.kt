@@ -17,5 +17,7 @@ data class ImperialRoadster (
     override val orbitType: String,
     override val periodDays: Double,
     override val video: String,
-    override val wikipedia: String
+    override val wikipedia: String,
+//    override val images: List<String>,
+
 ): UnitSpecificRoadster

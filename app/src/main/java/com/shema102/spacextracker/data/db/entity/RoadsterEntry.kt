@@ -3,11 +3,14 @@ package com.shema102.spacextracker.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.shema102.spacextracker.data.db.entity.converters.IdListConverter
 
 const val ROADSTER_ID = 0
 
 @Entity(tableName = "roadster")
+//@TypeConverters(IdListConverter::class)
 data class RoadsterEntry(
     @SerializedName("details")
     val details: String,
@@ -42,8 +45,11 @@ data class RoadsterEntry(
     @SerializedName("video")
     val video: String,
     @SerializedName("wikipedia")
-    val wikipedia: String
-){
+    val wikipedia: String,
+//    @SerializedName("flickr_images")
+//    val images: List<String>,
+
+) {
     @PrimaryKey(autoGenerate = false)
     var key: Int = ROADSTER_ID
 }
