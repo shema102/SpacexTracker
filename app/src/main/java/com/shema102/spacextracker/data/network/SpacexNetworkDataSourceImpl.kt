@@ -5,13 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.shema102.spacextracker.data.db.entity.*
 import com.shema102.spacextracker.internal.NoConnectivityException
+import org.threeten.bp.ZonedDateTime
+
 
 class SpacexNetworkDataSourceImpl(
     private val spacexApiService: SpacexApiService
 ) : SpacexNetworkDataSource {
 
-    private val _downloadedNextLaunch = MutableLiveData<NextLaunch>()
-    override val downloadedNextLaunch: LiveData<NextLaunch>
+    private val _downloadedNextLaunch = MutableLiveData<NextLaunchEntry>()
+    override val downloadedNextLaunch: LiveData<NextLaunchEntry>
         get() = _downloadedNextLaunch
 
     override suspend fun fetchNextLaunch() {
@@ -20,6 +22,7 @@ class SpacexNetworkDataSourceImpl(
                 .getNextLaunchAsync()
                 .await()
 
+            // from fetched crew ids fetch crew info
             val fetchedCrew = fetchedNextLaunch.crewId
                 .map { crewId ->
                     spacexApiService
@@ -29,6 +32,7 @@ class SpacexNetworkDataSourceImpl(
 
             fetchedNextLaunch.crewList = fetchedCrew
 
+            // from fetched payload ids fetch payload info
             val fetchedPayloads = fetchedNextLaunch.payloadsId
                 .map { payloadId ->
                     spacexApiService
@@ -37,6 +41,9 @@ class SpacexNetworkDataSourceImpl(
                 }.toList()
 
             fetchedNextLaunch.payloadsList = fetchedPayloads
+
+            // update last fetch time
+            fetchedNextLaunch.lastUpdate = ZonedDateTime.now()
 
             _downloadedNextLaunch.postValue(fetchedNextLaunch)
         } catch (e: NoConnectivityException) {

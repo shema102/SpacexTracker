@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.data.db.entity.NextLaunch
+import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.ui.base.ScopedFragment
@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.threeten.bp.ZonedDateTime
 import java.text.DateFormat
 import java.util.*
 
@@ -65,10 +66,13 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
             }
+
+            textView_last_update.text = it.lastUpdate.toString()
+            textView_update_window.text = ZonedDateTime.now().minusHours(100).toString()
         })
     }
 
-    private fun updateMissionImage(launchEntry: NextLaunch) {
+    private fun updateMissionImage(launchEntry: NextLaunchEntry) {
         Glide.with(this)
             .load(
                 launchEntry.links?.patch?.small
@@ -77,7 +81,7 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             .into(imageView_mission_badge)
     }
 
-    private fun updateLaunchDate(launchEntry: NextLaunch) {
+    private fun updateLaunchDate(launchEntry: NextLaunchEntry) {
         // Set as true if the date is "No earlier than"
         val net = launchEntry.net
         // Set as true if date is "To be determined"

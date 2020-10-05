@@ -17,7 +17,7 @@ interface SpacexApiService {
     fun getAllLaunchesAsync(): Deferred<List<LaunchEntry>>
 
     @GET("launches/next")
-    fun getNextLaunchAsync(): Deferred<NextLaunch>
+    fun getNextLaunchAsync(): Deferred<NextLaunchEntry>
 
     @GET("launches/{id}")
     fun getLaunchByIdAsync(@Path("id") id: String): Deferred<LaunchEntry>

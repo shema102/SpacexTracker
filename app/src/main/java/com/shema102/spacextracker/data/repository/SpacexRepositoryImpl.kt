@@ -5,7 +5,7 @@ import com.shema102.spacextracker.data.db.LaunchesDao
 import com.shema102.spacextracker.data.db.NextLaunchDao
 import com.shema102.spacextracker.data.db.RoadsterDao
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
-import com.shema102.spacextracker.data.db.entity.NextLaunch
+import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.RoadsterEntry
 import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.network.SpacexNetworkDataSource
@@ -35,11 +35,68 @@ class SpacexRepositoryImpl(
         }
     }
 
-    override suspend fun getNextLaunch(): LiveData<NextLaunch> {
+    override suspend fun getNextLaunch(): LiveData<NextLaunchEntry> {
         return withContext(Dispatchers.IO) {
             initNextLaunch()
             return@withContext nextLaunchDao.getNextLaunch()
         }
+    }
+
+    private fun persistFetchedNextLaunch(fetchedNextLaunch: NextLaunchEntry) {
+        GlobalScope.launch(Dispatchers.IO) {
+            nextLaunchDao.upsert(fetchedNextLaunch)
+        }
+    }
+
+    private suspend fun initNextLaunch() {
+        val defaultTime = ZonedDateTime.now().minusDays(1)
+
+        // TODO NextLaunchDao returns null here
+        val lastUpdate = nextLaunchDao.getNextLaunchLastUpdateTime().value
+
+        val lastUpdateTime = lastUpdate ?: defaultTime
+
+
+        if (isFetchNextLaunchNeeded(lastUpdateTime))
+            fetchNextLaunch()
+    }
+
+    private suspend fun fetchNextLaunch() {
+        launchesNetworkDataSource.fetchNextLaunch()
+    }
+
+    private fun isFetchNextLaunchNeeded(lastFetchTime: ZonedDateTime): Boolean {
+        val updateWindow = ZonedDateTime.now().minusSeconds(10)
+        return lastFetchTime.isBefore(updateWindow)
+    }
+
+
+    override suspend fun getRoadster(metric: Boolean): LiveData<out UnitSpecificRoadster> {
+        return withContext(Dispatchers.IO) {
+            initRoadster()
+            return@withContext if (metric) roadsterDao.getRoadsterMetric()
+            else roadsterDao.getRoadsterImperial()
+        }
+    }
+
+    private fun persistFetchedRoadster(fetchedRoadsterEntry: RoadsterEntry) {
+        GlobalScope.launch(Dispatchers.IO) {
+            roadsterDao.upsert(fetchedRoadsterEntry)
+        }
+    }
+
+    private suspend fun initRoadster() {
+        if (isFetchRoadsterNeeded(ZonedDateTime.now()))
+            fetchRoadster()
+    }
+
+    private suspend fun fetchRoadster() {
+        launchesNetworkDataSource.fetchRoadster()
+    }
+
+    private fun isFetchRoadsterNeeded(lastFetchTime: ZonedDateTime): Boolean {
+        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(60)
+        return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
 
 
@@ -50,59 +107,10 @@ class SpacexRepositoryImpl(
         }
     }
 
-    override suspend fun getRoadster(metric: Boolean): LiveData<out UnitSpecificRoadster> {
-        return withContext(Dispatchers.IO) {
-            initRoadster()
-            return@withContext if (metric) roadsterDao.getRoadsterMetric()
-            else roadsterDao.getRoadsterImperial()
-        }
-    }
 
     override suspend fun getLaunchWithId(id: String): LiveData<LaunchEntry> {
         return launchesDao.getLaunchWithId(id)
     }
-
-    private fun persistFetchedNextLaunch(fetchedNextLaunch: NextLaunch) {
-        GlobalScope.launch(Dispatchers.IO) {
-            nextLaunchDao.upsert(fetchedNextLaunch)
-        }
-    }
-
-    private suspend fun initNextLaunch() {
-        if (isFetchNextLaunchNeeded(ZonedDateTime.now().minusHours(1)))
-            fetchNextLaunch()
-    }
-
-    private suspend fun fetchNextLaunch() {
-        launchesNetworkDataSource.fetchNextLaunch()
-    }
-
-    private fun isFetchNextLaunchNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
-        return lastFetchTime.isBefore(thirtyMinutesAgo)
-    }
-
-
-    private fun persistFetchedRoadster(fetchedRoadsterEntry: RoadsterEntry) {
-        GlobalScope.launch(Dispatchers.IO) {
-            roadsterDao.upsert(fetchedRoadsterEntry)
-        }
-    }
-
-    private suspend fun initRoadster() {
-        if (isFetchRoadsterNeeded(ZonedDateTime.now().minusHours(1)))
-            fetchRoadster()
-    }
-
-    private suspend fun fetchRoadster() {
-        launchesNetworkDataSource.fetchRoadster()
-    }
-
-    private fun isFetchRoadsterNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
-        return lastFetchTime.isBefore(thirtyMinutesAgo)
-    }
-
 
     private fun persistFetchedLaunches(fetchedLaunches: List<LaunchEntry>) {
         GlobalScope.launch(Dispatchers.IO) {
@@ -111,7 +119,7 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initLaunches() {
-        if (isFetchLaunchesNeeded(ZonedDateTime.now().minusHours(1)))
+        if (isFetchLaunchesNeeded(ZonedDateTime.now()))
             fetchLaunches()
     }
 
@@ -120,7 +128,7 @@ class SpacexRepositoryImpl(
     }
 
     private fun isFetchLaunchesNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
+        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(120)
         return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
 }

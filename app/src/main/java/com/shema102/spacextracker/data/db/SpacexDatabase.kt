@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.shema102.spacextracker.data.db.entity.*
 
 @Database(
-    entities = [NextLaunch::class,
+    entities = [NextLaunchEntry::class,
         LaunchEntry::class,
         RoadsterEntry::class,
         Crew::class,
