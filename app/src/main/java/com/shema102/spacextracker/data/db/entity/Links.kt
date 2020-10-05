@@ -4,11 +4,11 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.shema102.spacextracker.data.db.entity.converters.IdListConverter
+import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "links")
-@TypeConverters(IdListConverter::class)
+@TypeConverters(StringListConverter::class)
 data class Links(
     @SerializedName("patch")
     @Embedded(prefix = "patch_")

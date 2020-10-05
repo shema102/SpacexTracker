@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.shema102.spacextracker.data.db.entity.NEXT_LAUNCH_ID
 import com.shema102.spacextracker.data.db.entity.NextLaunch
 import com.shema102.spacextracker.data.db.entity.Payload
 

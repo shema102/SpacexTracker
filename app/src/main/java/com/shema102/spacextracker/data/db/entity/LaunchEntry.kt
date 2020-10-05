@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.shema102.spacextracker.data.db.entity.converters.CrewListConverter
-import com.shema102.spacextracker.data.db.entity.converters.IdListConverter
+import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
 import com.shema102.spacextracker.data.db.entity.converters.PayloadListConverter
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "launch_entry")
 @TypeConverters(
-    IdListConverter::class,
+    StringListConverter::class,
     PayloadListConverter::class,
     CrewListConverter::class
 )

@@ -63,20 +63,20 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
         val roadster = viewModel.roadster.await()
         roadster.observe(viewLifecycleOwner, {
             if (it == null) return@observe
-//            updateRoadsterImage(it)
+            updateRoadsterImage(it)
             updateRoadsterDetails(it)
             updateDistances(it)
             updateLinks(it)
         })
     }
 
-//    private fun updateRoadsterImage(roadster: UnitSpecificRoadster) {
-//        Glide.with(this)
-//            .load(
-//                roadster.images.random()
-//            )
-//            .into(imageView_mission_badge)
-//    }
+    private fun updateRoadsterImage(roadster: UnitSpecificRoadster) {
+        Glide.with(this)
+            .load(
+                roadster.images.random()
+            )
+            .into(imageView_roadster_banner)
+    }
 
     private fun updateRoadsterDetails(roadster: UnitSpecificRoadster) {
         textView_roadster_details.text = roadster.details

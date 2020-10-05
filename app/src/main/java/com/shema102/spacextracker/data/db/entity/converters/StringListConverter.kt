@@ -2,7 +2,7 @@ package com.shema102.spacextracker.data.db.entity.converters
 
 import androidx.room.TypeConverter
 
-class IdListConverter {
+class StringListConverter {
     @TypeConverter
     fun fromIdList(list: List<String>?): String {
         return list?.joinToString(separator = ",") ?: "NULL"

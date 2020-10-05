@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.shema102.spacextracker.data.db.entity.converters.CrewListConverter
-import com.shema102.spacextracker.data.db.entity.converters.IdListConverter
+import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
 import com.shema102.spacextracker.data.db.entity.converters.PayloadListConverter
 import com.google.gson.annotations.SerializedName
 
@@ -14,7 +14,7 @@ const val NEXT_LAUNCH_ID = 0
 
 @Entity(tableName = "next_launch")
 @TypeConverters(
-    IdListConverter::class,
+    StringListConverter::class,
     PayloadListConverter::class,
     CrewListConverter::class
 )
