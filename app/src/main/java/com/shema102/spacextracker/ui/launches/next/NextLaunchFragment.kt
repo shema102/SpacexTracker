@@ -66,9 +66,6 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
             }
-
-            textView_last_update.text = it.lastUpdate.toString()
-            textView_update_window.text = ZonedDateTime.now().minusHours(100).toString()
         })
     }
 

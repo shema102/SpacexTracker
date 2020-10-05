@@ -49,15 +49,8 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initNextLaunch() {
-        val defaultTime = ZonedDateTime.now().minusDays(1)
-
-        // TODO NextLaunchDao returns null here
-        val lastUpdate = nextLaunchDao.getNextLaunchLastUpdateTime().value
-
-        val lastUpdateTime = lastUpdate ?: defaultTime
-
-
-        if (isFetchNextLaunchNeeded(lastUpdateTime))
+        val lastUpdate = nextLaunchDao.getNextLaunchLastUpdateTime()
+        if (isFetchNextLaunchNeeded(lastUpdate))
             fetchNextLaunch()
     }
 
