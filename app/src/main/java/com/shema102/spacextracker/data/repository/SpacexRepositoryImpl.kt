@@ -86,7 +86,7 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initRoadster() {
-        if (isFetchRoadsterNeeded(ZonedDateTime.now()))
+        if (isFetchRoadsterNeeded(ZonedDateTime.now().minusMinutes(61)))
             fetchRoadster()
     }
 
@@ -119,7 +119,7 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initLaunches() {
-        if (isFetchLaunchesNeeded(ZonedDateTime.now()))
+        if (isFetchLaunchesNeeded(ZonedDateTime.now().minusMinutes(121)))
             fetchLaunches()
     }
 
