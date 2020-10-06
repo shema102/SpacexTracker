@@ -60,7 +60,7 @@ class SpacexRepositoryImpl(
     }
 
     private fun isFetchNextLaunchNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val updateWindow = ZonedDateTime.now().minusSeconds(10)
+        val updateWindow = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(updateWindow)
     }
 
