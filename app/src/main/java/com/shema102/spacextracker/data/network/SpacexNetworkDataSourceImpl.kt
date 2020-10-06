@@ -79,6 +79,8 @@ class SpacexNetworkDataSourceImpl(
                     }.toList()
 
                 it.payloadsList = fetchedPayloads
+
+                it.lastUpdate = ZonedDateTime.now()
             }
 
 

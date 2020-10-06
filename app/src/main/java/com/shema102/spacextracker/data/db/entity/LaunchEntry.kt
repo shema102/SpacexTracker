@@ -1,19 +1,19 @@
 package com.shema102.spacextracker.data.db.entity
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.shema102.spacextracker.data.db.entity.converters.CrewListConverter
 import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
 import com.shema102.spacextracker.data.db.entity.converters.PayloadListConverter
 import com.google.gson.annotations.SerializedName
+import com.shema102.spacextracker.data.db.entity.converters.ZonedDateTimeConverter
+import org.threeten.bp.ZonedDateTime
 
 @Entity(tableName = "launch_entry")
 @TypeConverters(
     StringListConverter::class,
     PayloadListConverter::class,
-    CrewListConverter::class
+    CrewListConverter::class,
+    ZonedDateTimeConverter::class
 )
 data class LaunchEntry(
     @SerializedName("crew")
@@ -50,4 +50,6 @@ data class LaunchEntry(
     @SerializedName("links")
     @Embedded(prefix = "links_")
     val links: Links?,
+    @ColumnInfo(name = "last_update")
+    var lastUpdate: ZonedDateTime
 )

@@ -115,7 +115,9 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initLaunches() {
-        if (isFetchLaunchesNeeded(ZonedDateTime.now().minusMinutes(121)))
+        val lastUpdateOfRandomLaunch = launchesDao.getRandomLaunchLastUpdateTime()
+            ?: ZonedDateTime.now().minusYears(100)
+        if (isFetchLaunchesNeeded(lastUpdateOfRandomLaunch))
             fetchLaunches()
     }
 
