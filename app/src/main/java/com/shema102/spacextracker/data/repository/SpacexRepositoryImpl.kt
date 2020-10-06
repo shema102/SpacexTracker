@@ -50,6 +50,7 @@ class SpacexRepositoryImpl(
 
     private suspend fun initNextLaunch() {
         val lastUpdate = nextLaunchDao.getNextLaunchLastUpdateTime()
+            ?: ZonedDateTime.now().minusYears(100)
         if (isFetchNextLaunchNeeded(lastUpdate))
             fetchNextLaunch()
     }

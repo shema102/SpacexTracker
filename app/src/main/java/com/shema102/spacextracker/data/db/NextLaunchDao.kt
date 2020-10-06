@@ -18,5 +18,5 @@ interface NextLaunchDao {
     fun getNextLaunch(): LiveData<NextLaunchEntry>
 
     @Query("select last_update from next_launch where `key` = $NEXT_LAUNCH_ID")
-    fun getNextLaunchLastUpdateTime(): ZonedDateTime
+    fun getNextLaunchLastUpdateTime(): ZonedDateTime?
 }
