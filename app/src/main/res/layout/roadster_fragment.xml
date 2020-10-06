@@ -1,128 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.launches.roadster.RoadsterFragment">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/imageView_roadster_banner"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:adjustViewBounds="false"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/roadster_default_banner" />
-
-    <TextView
-        android:id="@+id/textView_roadster_details"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/back_of_element"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_roadster_banner"
-        tools:text="Information about Roadster" />
+        android:paddingBottom="25dp"
+        tools:context=".ui.launches.roadster.RoadsterFragment">
 
-    <TextView
-        android:id="@+id/textView_roadster_to_earth_distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/back_of_element"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_roadster_details"
-        tools:text="Distance to Earth" />
-
-    <TextView
-        android:id="@+id/textView_roadster_to_mars_distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/back_of_element"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_roadster_to_earth_distance"
-        tools:text="Distance to Mars" />
-
-
-    <TextView
-        android:id="@+id/textView_roadster_links"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/back_of_element"
-        android:gravity="center"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:text="Links"
-        android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_roadster_to_mars_distance" />
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/textView_roadster_links">
+        <ImageView
+            android:id="@+id/imageView_roadster_banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/roadster_default_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="Roadster banner" />
 
         <TextView
-            android:id="@+id/textView_roadster_links_wiki"
-            android:layout_width="120dp"
+            android:id="@+id/textView_roadster_details"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
-            android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Wikipedia"
-            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_roadster_banner"
+            tools:text="Information about Roadster" />
 
         <TextView
-            android:id="@+id/textView_roadster_links_youtube"
-            android:layout_width="120dp"
+            android:id="@+id/textView_roadster_to_earth_distance"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/back_of_element"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_roadster_details"
+            tools:text="Distance to Earth" />
+
+        <TextView
+            android:id="@+id/textView_roadster_to_mars_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/back_of_element"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_roadster_to_earth_distance"
+            tools:text="Distance to Mars" />
+
+
+        <TextView
+            android:id="@+id/textView_roadster_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Youtube"
-            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />/>
-    </GridLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="Links"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_roadster_to_mars_distance" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/textView_roadster_links">
+
+            <TextView
+                android:id="@+id/textView_roadster_links_wiki"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/back_of_element"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Wikipedia"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+            <TextView
+                android:id="@+id/textView_roadster_links_youtube"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/back_of_element"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Youtube"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />/>
+        </GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
