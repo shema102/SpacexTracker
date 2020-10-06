@@ -80,7 +80,9 @@ class SpacexRepositoryImpl(
     }
 
     private suspend fun initRoadster() {
-        if (isFetchRoadsterNeeded(ZonedDateTime.now().minusMinutes(61)))
+        val lastUpdate = roadsterDao.getRoadsterLastUpdateTime()
+            ?: ZonedDateTime.now().minusYears(100)
+        if (isFetchRoadsterNeeded(lastUpdate))
             fetchRoadster()
     }
 
@@ -89,8 +91,8 @@ class SpacexRepositoryImpl(
     }
 
     private fun isFetchRoadsterNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(60)
-        return lastFetchTime.isBefore(thirtyMinutesAgo)
+        val updateWindow = ZonedDateTime.now().minusMinutes(60)
+        return lastFetchTime.isBefore(updateWindow)
     }
 
 

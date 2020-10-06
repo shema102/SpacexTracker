@@ -97,6 +97,9 @@ class SpacexNetworkDataSourceImpl(
             val fetchedRoadster = spacexApiService
                 .getRoadsterAsync()
                 .await()
+
+            fetchedRoadster.lastUpdate = ZonedDateTime.now()
+
             _downloadedRoadster.postValue(fetchedRoadster)
         } catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection", e)
