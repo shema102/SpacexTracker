@@ -10,6 +10,8 @@ import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFact
 import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
 import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.shema102.spacextracker.data.provider.ThemeProvider
+import com.shema102.spacextracker.data.provider.ThemeProviderImpl
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.data.provider.UnitProviderImpl
 import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
@@ -42,6 +44,10 @@ class SpacexApplication : Application(), KodeinAware {
             )
         }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+
+        bind<ThemeProvider>() with singleton { ThemeProviderImpl(instance()) }
+
+//        bind() from provider { SettingsFragment(instance()) }
 
         bind() from provider { RoadsterViewModelFactory(instance(), instance()) }
         bind() from provider { NextLaunchViewModelFactory(instance()) }

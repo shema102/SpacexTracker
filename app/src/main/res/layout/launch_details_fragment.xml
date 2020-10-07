@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,6 +87,7 @@
             android:ellipsize="end"
             android:maxLength="20"
             android:maxLines="1"
+            android:textColor="@color/colorDefaultText"
             android:text="SpaceX Mission"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textSize="25sp"
@@ -104,6 +106,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:background="@drawable/back_of_element"
+            android:textColor="@color/colorDefaultText"
             android:text="Mission details"
             android:gravity="center"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
@@ -120,6 +123,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
+            android:textColor="@color/colorDefaultText"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
@@ -135,12 +139,27 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="12dp"
+            android:textColor="@color/colorDefaultText"
             android:text="Launch date"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.986"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_mission_name" />
+
+        <TextView
+            android:id="@+id/textView_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="dark mode"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            android:textColor="@color/colorDefaultText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.986"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_launch_date" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_payload"
@@ -158,6 +177,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
+            android:textColor="@color/colorDefaultText"
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"

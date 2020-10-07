@@ -6,4 +6,12 @@
     <string name="next_launch">Next launch</string>
     <string name="roadster">Roadster</string>
     <string name="loading">Loading</string>
+
+<!--    preferences-->
+    <string name="unit_system_preferences_key">UNIT_SYSTEM</string>
+    <string name="theme_preferences_key">THEME_PREFERENCES</string>
+    <string name="theme_preferences_value">MODE_NIGHT_NO</string>
+    <string name="dark_theme_preference_value">MODE_NIGHT_YES</string>
+    <string name="light_theme_preference_value">MODE_NIGHT_NO</string>
+    <string name="system_theme_preference_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
 </resources>

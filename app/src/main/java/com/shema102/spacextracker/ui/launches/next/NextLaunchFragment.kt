@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
+import com.shema102.spacextracker.data.provider.ThemeProvider
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.shema102.spacextracker.ui.launches.common.PayloadItem
@@ -21,7 +22,6 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import org.threeten.bp.ZonedDateTime
 import java.text.DateFormat
 import java.util.*
 
@@ -66,6 +66,7 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
             }
+
         })
     }
 
