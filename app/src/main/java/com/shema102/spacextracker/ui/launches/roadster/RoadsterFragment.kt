@@ -1,6 +1,9 @@
 package com.shema102.spacextracker.ui.launches.roadster
 
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -92,15 +95,22 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
     private fun updateLinks(roadster: UnitSpecificRoadster) {
         val wikiLink: String = roadster.wikipedia
         val youtubeLink: String = roadster.video
-        textView_roadster_links_wiki.text = HtmlCompat.fromHtml(
-                "<a href=\"$wikiLink\">Wikipedia</a>",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-            )
 
-        textView_roadster_links_youtube.text = HtmlCompat.fromHtml(
-                "<a href=\"$youtubeLink\">YouTube</a>",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-            )
+        button_roadster_links_wiki.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW,
+            Uri.parse(wikiLink))
+            try {
+                startActivity(intent)
+            }catch (e: ActivityNotFoundException){}
+        }
+
+        button_roadster_links_youtube.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW,
+            Uri.parse(youtubeLink))
+            try {
+                startActivity(intent)
+            }catch (e: ActivityNotFoundException){}
+        }
 
     }
 
