@@ -9,21 +9,74 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="25dp"
         android:background="@color/colorBackground"
+        android:paddingBottom="25dp"
         tools:context=".ui.launches.roadster.RoadsterFragment">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="progressBar_loading, textView_loading"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/loading"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Caption'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_loading"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/contentGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="imageView_roadster_banner,
+                textView_roadster_details,
+                textView_roadster_to_earth_distance,
+                textView_roadster_to_mars_distance,
+                textView_roadster_links,
+                gridLayout_link_buttons"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/imageView_roadster_banner"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="false"
+            android:contentDescription="Roadster banner"
             android:scaleType="centerCrop"
             android:src="@drawable/roadster_default_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="Roadster banner" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_roadster_details"
@@ -32,7 +85,6 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
-
             android:background="@drawable/back_of_element"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
@@ -52,7 +104,6 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
             android:paddingStart="4dp"
-
             android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +151,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_roadster_to_mars_distance" />
 
         <GridLayout
+            android:id="@+id/gridLayout_link_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
