@@ -60,10 +60,15 @@
             app:layout_constraintGuide_percent="0.4" />
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/content"
+            android:id="@+id/contentGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="imageView_mission_badge, textView_mission_name, @+id/textView_mission_details_text"
+            app:constraint_referenced_ids="textView_mission_details,
+                textView_mission_details_text,
+                textView_payload_name,
+                recyclerView_payload"
+            tools:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,15 +76,16 @@
             android:id="@+id/imageView_mission_badge"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="Mission Badge"
-            android:src="@drawable/ic_default_spacex_badge"
             android:background="@color/colorBackground"
+            android:contentDescription="Mission Badge"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintWidth_percent="0.3"
+            tools:src="@drawable/ic_default_spacex_badge" />
+
         <TextView
             android:id="@+id/textView_mission_name"
             android:layout_width="wrap_content"
@@ -88,14 +94,14 @@
             android:ellipsize="end"
             android:maxLength="20"
             android:maxLines="1"
-            android:textColor="@color/colorDefaultText"
-            android:text="SpaceX Mission"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@color/colorDefaultText"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_mission_badge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView_mission_badge"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="SpaceX Mission" />
 
         <TextView
             android:id="@+id/textView_mission_details"
@@ -104,13 +110,13 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="12dp"
+            android:background="@drawable/back_of_element"
+            android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:background="@drawable/back_of_element"
-            android:textColor="@color/colorDefaultText"
             android:text="Mission details"
-            android:gravity="center"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            android:textColor="@color/colorDefaultText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,10 +130,10 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
-            android:textColor="@color/colorDefaultText"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            android:textColor="@color/colorDefaultText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,13 +146,13 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="12dp"
-            android:textColor="@color/colorDefaultText"
-            android:text="Launch date"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            android:textColor="@color/colorDefaultText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.986"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_mission_name" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_mission_name"
+            tools:text="Launch date" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_payload"
@@ -164,12 +170,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
-            android:textColor="@color/colorDefaultText"
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="Payload details"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            android:textColor="@color/colorDefaultText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,14 +185,14 @@
             android:id="@+id/recyclerView_payload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            tools:listitem="@layout/payload_details_item"
             android:background="@color/colorBackground"
-            tools:itemCount="2"
+            android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_payload_name" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_payload_name"
+            tools:itemCount="2"
+            tools:listitem="@layout/payload_details_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -67,7 +67,6 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
             if (it == null) return@observe
             updateMissionImage(it)
             group_loading.visibility = View.GONE
-            content.visibility = View.VISIBLE
             textView_mission_name.text = it.name
             updateLaunchDate(it)
             textView_mission_details_text.text = it.details
@@ -75,6 +74,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
             }
+            contentGroup.visibility = View.VISIBLE
         })
     }
 
