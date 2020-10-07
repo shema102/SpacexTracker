@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="25dp"
+        android:background="@color/colorBackground"
         tools:context=".ui.launches.roadster.RoadsterFragment">
 
         <ImageView
@@ -31,6 +32,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
+            android:textColor="@color/colorDefaultText"
             android:background="@drawable/back_of_element"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
@@ -50,6 +52,7 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
             android:paddingStart="4dp"
+            android:textColor="@color/colorDefaultText"
             android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +70,7 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/back_of_element"
             android:paddingStart="4dp"
+            android:textColor="@color/colorDefaultText"
             android:paddingEnd="4dp"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +90,7 @@
             android:background="@drawable/back_of_element"
             android:gravity="center"
             android:paddingStart="4dp"
+            android:textColor="@color/colorDefaultText"
             android:paddingEnd="4dp"
             android:text="Links"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'

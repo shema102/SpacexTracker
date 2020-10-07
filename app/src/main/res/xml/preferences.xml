@@ -8,7 +8,6 @@
             android:key="THEME_PREFERENCES"
             android:summary="%s"
             android:title="Theme" />
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Units">
