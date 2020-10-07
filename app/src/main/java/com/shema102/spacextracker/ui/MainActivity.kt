@@ -2,9 +2,10 @@ package com.shema102.spacextracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -41,13 +42,12 @@ class MainActivity: AppCompatActivity(), KodeinAware {
         AppCompatDelegate.setDefaultNightMode(theme)
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        menuInflater.inflate(R.menu.overflow_menu, menu)
         return true
     }
 

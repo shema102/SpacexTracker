@@ -45,9 +45,6 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(NextLaunchViewModel::class.java)
-
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Next launch"
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
         bindUi()
 
     }

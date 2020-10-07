@@ -8,12 +8,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/back_of_element"
         android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/back_of_element">
+        android:paddingBottom="6dp">
 
         <TextView
             android:id="@+id/textView_payload_name"
@@ -21,13 +18,12 @@
             android:layout_height="wrap_content"
             android:paddingStart="4dp"
             android:paddingEnd="40dp"
-            android:textColor="@color/colorDefaultText"
             android:text="name"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_payload_type"
@@ -36,7 +32,6 @@
             android:layout_marginTop="6dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:textColor="@color/colorDefaultText"
             android:text="type"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +46,6 @@
             android:layout_marginTop="6dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:textColor="@color/colorDefaultText"
             android:text="manufacturers"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +60,6 @@
             android:layout_marginTop="6dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:textColor="@color/colorDefaultText"
             android:text="customers"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +74,6 @@
             android:layout_marginTop="6dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:textColor="@color/colorDefaultText"
             android:text="mass"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"

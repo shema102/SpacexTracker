@@ -6,5 +6,9 @@
     <color name="colorTextBackground">#303030</color>
     <color name="colorTextBackgroundBorder">#515151</color>
     <color name="colorDefaultText">#FFFFFF</color>
+    <color name="colorDefaultTextSecondary">#C3C3C3</color>
     <color name="colorBackground">#2C2C2C</color>
+    <color name="inactiveBottomNavIconColor">#757575</color>
+    <color name="bottomNavBarColor">@color/colorTextBackground</color>
+    <color name="bottomNavIconColor">#C44EF6</color>
 </resources>

@@ -55,9 +55,6 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
             LaunchDetailsViewModel::class.java
         )
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Launch details"
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
-
         bindUi()
     }
 

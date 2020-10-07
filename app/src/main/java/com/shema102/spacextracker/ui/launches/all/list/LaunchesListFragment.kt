@@ -40,9 +40,6 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
             ViewModelProvider(this, viewModelFactory)
                 .get(LaunchesListViewModel::class.java)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "All launches"
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
-
         bindUi()
     }
 

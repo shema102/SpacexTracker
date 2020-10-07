@@ -44,9 +44,6 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(RoadsterViewModel::class.java)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Musk's Roadster"
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
-
         bindUi()
     }
 
