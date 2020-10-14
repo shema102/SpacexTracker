@@ -1,6 +1,7 @@
 package com.shema102.spacextracker
 
 import android.app.Application
+import android.app.Notification
 import androidx.preference.PreferenceManager
 import com.shema102.spacextracker.data.db.SpacexDatabase
 import com.shema102.spacextracker.data.network.*
@@ -10,10 +11,7 @@ import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFact
 import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
 import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.shema102.spacextracker.data.provider.ThemeProvider
-import com.shema102.spacextracker.data.provider.ThemeProviderImpl
-import com.shema102.spacextracker.data.provider.UnitProvider
-import com.shema102.spacextracker.data.provider.UnitProviderImpl
+import com.shema102.spacextracker.data.provider.*
 import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -46,6 +44,8 @@ class SpacexApplication : Application(), KodeinAware {
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
 
         bind<ThemeProvider>() with singleton { ThemeProviderImpl(instance()) }
+
+        bind<NotificationProvider>() with singleton { NotificationProviderImpl(instance()) }
 
 //        bind() from provider { SettingsFragment(instance()) }
 
