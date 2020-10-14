@@ -8,6 +8,12 @@
             android:key="THEME_PREFERENCES"
             android:summary="%s"
             android:title="Theme" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="NOTIFICATION_PREFERENCES"
+            android:title="Notification"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Units">

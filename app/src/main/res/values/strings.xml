@@ -14,4 +14,5 @@
     <string name="dark_theme_preference_value">MODE_NIGHT_YES</string>
     <string name="light_theme_preference_value">MODE_NIGHT_NO</string>
     <string name="system_theme_preference_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
+    <string name="notification_preferences_key">NOTIFICATION_PREFERENCES</string>
 </resources>
