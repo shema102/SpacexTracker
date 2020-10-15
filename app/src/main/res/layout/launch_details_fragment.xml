@@ -9,9 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
         android:paddingTop="25dp"
         android:paddingBottom="25dp"
-        android:background="@color/colorBackground"
         tools:context=".ui.launches.next.NextLaunchFragment">
 
         <androidx.constraintlayout.widget.Group
@@ -67,7 +67,9 @@
             app:constraint_referenced_ids="textView_mission_details,
                 textView_mission_details_text,
                 textView_payload_name,
-                recyclerView_payload"
+                recyclerView_payload,
+                textView_launch_links_header,
+                gridLayout_link_buttons"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
@@ -149,14 +151,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_mission_name"
             tools:text="Launch date" />
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_payload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids=""
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView_payload_name"
             android:layout_width="match_parent"
@@ -179,17 +173,121 @@
             android:id="@+id/recyclerView_payload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:background="@color/colorBackground"
             android:overScrollMode="never"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:layout_marginTop="8dp"
+            android:rotation="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_payload_name"
             tools:itemCount="2"
             tools:listitem="@layout/payload_details_item" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_launch_links"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="textView_launch_links_header, gridLayout_link_buttons"
+            />
+
+        <TextView
+            android:id="@+id/textView_launch_links_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/back_of_element"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="Links"
+            android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_payload" />
+
+        <LinearLayout
+            android:id="@+id/gridLayout_link_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/textView_launch_links_header">
+
+            <Button
+                android:id="@+id/button_launch_links_webcast"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_of_element"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Webcast"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+            <Button
+                android:id="@+id/button_launch_links_wiki"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_of_element"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Wikipedia"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+            <Button
+                android:id="@+id/button_launch_links_youtube"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_of_element"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Youtube"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+            <Button
+                android:id="@+id/button_launch_links_reddit"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_of_element"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Reddit"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+            <Button
+                android:id="@+id/button_launch_links_article"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back_of_element"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="Article"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

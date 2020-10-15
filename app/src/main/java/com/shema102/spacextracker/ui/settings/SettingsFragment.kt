@@ -62,6 +62,4 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
     private fun setColors(view: View?){
         context?.getColor(R.color.colorBackground)?.let { view?.setBackgroundColor(it) }
     }
-
-    // TODO Hide menu button on entering settings
 }

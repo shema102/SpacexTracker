@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/back_of_element"
         android:paddingTop="6dp"
-        android:paddingBottom="6dp">
+        android:paddingBottom="6dp"
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/textView_payload_name"

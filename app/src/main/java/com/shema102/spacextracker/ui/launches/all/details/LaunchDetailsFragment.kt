@@ -1,23 +1,32 @@
 package com.shema102.spacextracker.ui.launches.all.details
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
+import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.internal.IdNotFoundException
+import com.shema102.spacextracker.internal.makeVisible
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.shema102.spacextracker.ui.launches.common.PayloadItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.launch_details_fragment.*
+import kotlinx.android.synthetic.main.launch_details_fragment.contentGroup
+import kotlinx.android.synthetic.main.launch_details_fragment.group_loading
+import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -72,6 +81,8 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
             }
             contentGroup.visibility = View.VISIBLE
+
+            updateLinks(it)
         })
     }
 
@@ -131,6 +142,66 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
     private fun List<Payload>.toPayloadItems(): List<PayloadItem> {
         return this.map {
             PayloadItem(it, unitProvider)
+        }
+    }
+
+    private fun updateLinks(launch: LaunchEntry) {
+        val links = launch.links ?: return
+        var linksNumber = 0
+
+        val wikiLink: String? = links.wikipedia
+        if (wikiLink != null) {
+            bindLinkToButton(button_launch_links_wiki, wikiLink)
+            button_launch_links_wiki.makeVisible()
+            linksNumber++
+        }
+
+        val youtubeId: String? = links.youtubeId
+        if (youtubeId != null) {
+            val youtubeLink = "https://www.youtube.com/watch?v=$youtubeId"
+            bindLinkToButton(button_launch_links_youtube, youtubeLink)
+            button_launch_links_youtube.makeVisible()
+            linksNumber++
+        }
+
+        val webcast: String? = links.webcast
+        if (webcast != null) {
+            bindLinkToButton(button_launch_links_webcast, webcast)
+            button_launch_links_webcast.makeVisible()
+            linksNumber++
+        }
+
+        val reddit: String? = links.reddit?.campaign
+        if (reddit != null) {
+            bindLinkToButton(button_launch_links_reddit, reddit)
+            button_launch_links_reddit.makeVisible()
+            linksNumber++
+        }
+
+        val article: String? = links.article
+        if (article != null) {
+            bindLinkToButton(button_launch_links_article, article)
+            button_launch_links_article.makeVisible()
+            linksNumber++
+        }
+
+
+        // if all links missing left links group GONE
+        if(linksNumber > 0){
+            group_launch_links.makeVisible()
+        }
+    }
+
+    private fun bindLinkToButton(button: Button, link: String) {
+        button.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(link)
+            )
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+            }
         }
     }
 }
