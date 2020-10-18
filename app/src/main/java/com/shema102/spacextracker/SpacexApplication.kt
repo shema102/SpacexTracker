@@ -52,7 +52,7 @@ class SpacexApplication : Application(), KodeinAware {
         bind() from provider { RoadsterViewModelFactory(instance(), instance()) }
         bind() from provider { NextLaunchViewModelFactory(instance()) }
         bind() from provider { LaunchesListViewModelFactory(instance()) }
-        bind() from factory() { launchId: String ->
+        bind() from factory { launchId: String ->
             LaunchDetailsViewModelFactory(
                 launchId,
                 instance()

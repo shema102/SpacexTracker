@@ -141,9 +141,8 @@
             android:background="@drawable/back_of_element"
             android:gravity="center"
             android:paddingStart="4dp"
-
             android:paddingEnd="4dp"
-            android:text="Links"
+            android:text="@string/links"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -172,7 +171,7 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Wikipedia"
+                android:text="@string/wikipedia"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
             <Button
@@ -186,8 +185,8 @@
                 android:gravity="center"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Youtube"
-                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />/>
+                android:text="@string/youtube"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
         </GridLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

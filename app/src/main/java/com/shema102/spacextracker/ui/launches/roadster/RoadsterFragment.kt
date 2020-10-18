@@ -4,12 +4,10 @@ package com.shema102.spacextracker.ui.launches.roadster
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -17,7 +15,6 @@ import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.internal.UnitSystem
-import com.shema102.spacextracker.internal.round
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.launch

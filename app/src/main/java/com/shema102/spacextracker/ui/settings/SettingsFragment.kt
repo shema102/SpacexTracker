@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
@@ -12,7 +11,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.provider.ThemeProvider
-import com.shema102.spacextracker.data.provider.ThemeProviderImpl
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -62,4 +60,5 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
     private fun setColors(view: View?){
         context?.getColor(R.color.colorBackground)?.let { view?.setBackgroundColor(it) }
     }
+
 }

@@ -17,10 +17,10 @@
         tools:layout="@layout/launches_list_fragment">
         <action
             android:id="@+id/actionDetail"
-            app:destination="@id/lauchDetailsFragment" />
+            app:destination="@id/launchDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/lauchDetailsFragment"
+        android:id="@+id/launchDetailsFragment"
         android:name="com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment"
         android:label="Launch details"
         tools:layout="@layout/launch_details_fragment">
@@ -33,10 +33,6 @@
         android:name="com.shema102.spacextracker.ui.launches.roadster.RoadsterFragment"
         android:label="Musk's Roadster"
         tools:layout="@layout/roadster_fragment" />
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.shema102.spacextracker.ui.about.AboutFragment"
-        android:label="About" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.shema102.spacextracker.ui.settings.SettingsFragment"

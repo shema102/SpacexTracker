@@ -2,7 +2,6 @@ package com.shema102.spacextracker.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.shema102.spacextracker.data.db.entity.NEXT_LAUNCH_ID
 import com.shema102.spacextracker.data.db.entity.ROADSTER_ID
 import com.shema102.spacextracker.data.db.entity.RoadsterEntry
 import com.shema102.spacextracker.data.db.entity.converters.ZonedDateTimeConverter

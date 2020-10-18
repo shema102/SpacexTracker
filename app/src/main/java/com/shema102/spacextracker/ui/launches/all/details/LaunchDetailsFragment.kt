@@ -8,13 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
-import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.internal.IdNotFoundException
@@ -24,9 +22,6 @@ import com.shema102.spacextracker.ui.launches.common.PayloadItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.launch_details_fragment.*
-import kotlinx.android.synthetic.main.launch_details_fragment.contentGroup
-import kotlinx.android.synthetic.main.launch_details_fragment.group_loading
-import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -75,7 +70,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
             group_loading.visibility = View.GONE
             textView_mission_name.text = it.name
             updateLaunchDate(it)
-            textView_mission_details_text.text = it.details
+            textView_mission_details_text.text = it.details ?: "No info"
 
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())

@@ -1,2 +1,2 @@
 # SpacexTracker
-Androi App to track SpaceX launchers
+Android App to track SpaceX launchers

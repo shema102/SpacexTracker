@@ -1,11 +1,9 @@
 package com.shema102.spacextracker.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.PopupMenu
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation

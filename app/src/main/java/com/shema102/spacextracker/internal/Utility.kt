@@ -6,8 +6,8 @@ import java.util.*
 import kotlin.math.round
 
 fun dateTimeFromTimestamp(timestamp: Int): String {
-    val milis = timestamp.toLong() * 1000
-    val dateTime = Date(milis)
+    val millis = timestamp.toLong() * 1000
+    val dateTime = Date(millis)
     val date = DateFormat.getDateInstance(DateFormat.SHORT).format(dateTime)
     val time = DateFormat.getTimeInstance(DateFormat.SHORT).format(dateTime)
     return "$time $date"

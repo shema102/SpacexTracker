@@ -114,7 +114,7 @@
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Mission details"
+            android:text="@string/mission_details"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -162,7 +162,7 @@
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Payload details"
+            android:text="@string/payload_details"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -206,7 +206,7 @@
             android:layout_marginTop="2dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Links"
+            android:text="@string/links"
             android:textAppearance='@style/TextAppearance.MaterialComponents.Body1'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +232,7 @@
                 android:background="@drawable/back_of_element"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Webcast"
+                android:text="@string/webcast"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
             <Button
@@ -245,7 +245,7 @@
                 android:background="@drawable/back_of_element"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Wikipedia"
+                android:text="@string/wikipedia"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
             <Button
@@ -258,7 +258,7 @@
                 android:background="@drawable/back_of_element"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Youtube"
+                android:text="@string/youtube"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
             <Button
@@ -271,7 +271,7 @@
                 android:background="@drawable/back_of_element"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Reddit"
+                android:text="@string/reddit"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
             <Button
@@ -284,7 +284,7 @@
                 android:background="@drawable/back_of_element"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="Article"
+                android:text="@string/article"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Body1' />
 
         </LinearLayout>

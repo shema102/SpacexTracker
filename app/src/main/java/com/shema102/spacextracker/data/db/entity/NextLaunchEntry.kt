@@ -2,13 +2,11 @@ package com.shema102.spacextracker.data.db.entity
 
 
 import androidx.room.*
-import com.shema102.spacextracker.data.db.entity.converters.CrewListConverter
-import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
-import com.shema102.spacextracker.data.db.entity.converters.PayloadListConverter
 import com.google.gson.annotations.SerializedName
+import com.shema102.spacextracker.data.db.entity.converters.CrewListConverter
+import com.shema102.spacextracker.data.db.entity.converters.PayloadListConverter
+import com.shema102.spacextracker.data.db.entity.converters.StringListConverter
 import com.shema102.spacextracker.data.db.entity.converters.ZonedDateTimeConverter
-import org.threeten.bp.Instant
-import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 
 
@@ -34,7 +32,7 @@ data class NextLaunchEntry(
     @SerializedName("net")
     val net: Boolean,
     @SerializedName("details")
-    val details: String,
+    val details: String?,
     @SerializedName("id")
     val id: String,
     @SerializedName("launchpad")

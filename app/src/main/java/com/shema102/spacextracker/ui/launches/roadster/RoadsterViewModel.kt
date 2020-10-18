@@ -8,7 +8,7 @@ import com.shema102.spacextracker.internal.lazyDeferred
 
 class RoadsterViewModel(
     private val spacexRepository: SpacexRepository,
-    private val unitProvider: UnitProvider
+    unitProvider: UnitProvider
 ) : ViewModel() {
     private val unitSystem = unitProvider.getUnitSystem()
 

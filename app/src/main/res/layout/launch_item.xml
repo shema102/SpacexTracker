@@ -67,7 +67,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.909"
             app:layout_constraintWidth_percent="0.15"
-            android:contentDescription="mission badge" />
+            android:contentDescription="Mission badge" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
