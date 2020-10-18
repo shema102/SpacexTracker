@@ -1,5 +1,6 @@
 package com.shema102.spacextracker.ui.launches.all.list
 
+import android.content.Context
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
@@ -22,8 +23,7 @@ class LaunchItem(
     override fun getLayout(): Int = R.layout.launch_item
 
     private fun ViewHolder.updateLaunchDate() {
-        val launchDate: String = (launchEntry.staticFireDateUnix?.let { dateTimeFromTimestamp(it) }
-            ?: "No info").toString()
+        val launchDate: String = dateTimeFromTimestamp(launchEntry.dateUnix)
         textView_launch_date.text = launchDate
     }
 

@@ -30,3 +30,7 @@ fun View.makeInvisible(){
 fun View.makeGone(){
     this.visibility = View.GONE
 }
+
+fun String.toBoldHtml(): String{
+    return "<b>$this</b>"
+}

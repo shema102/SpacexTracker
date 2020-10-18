@@ -70,7 +70,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
             group_loading.visibility = View.GONE
             textView_mission_name.text = it.name
             updateLaunchDate(it)
-            textView_mission_details_text.text = it.details ?: "No info"
+            textView_mission_details_text.text = it.details ?: context?.getString(R.string.no_info)
 
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
@@ -102,7 +102,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
         val milliseconds = launchEntry.dateUnix.toLong() * 1000
         val date = Date(milliseconds)
 
-        var dateTime: String = if (tbd) {
+        val dateTime: String = if (tbd) {
             "TBD"
         } else {
             when (datePrecision) {
@@ -136,7 +136,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
 
     private fun List<Payload>.toPayloadItems(): List<PayloadItem> {
         return this.map {
-            PayloadItem(it, unitProvider)
+            PayloadItem(it, unitProvider, context)
         }
     }
 
@@ -182,7 +182,7 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
 
 
         // if all links missing left links group GONE
-        if(linksNumber > 0){
+        if (linksNumber > 0) {
             group_launch_links.makeVisible()
         }
     }

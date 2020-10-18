@@ -15,6 +15,7 @@ import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.internal.UnitSystem
+import com.shema102.spacextracker.internal.toBoldHtml
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.launch
@@ -74,19 +75,24 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
 
     private fun updateDistances(roadster: UnitSpecificRoadster) {
         val unitEnding: String =
-            if (unitProvider.getUnitSystem() == UnitSystem.METRIC) "Km"
-            else "Mi"
+            if (unitProvider.getUnitSystem() == UnitSystem.METRIC) context?.getString(R.string.km)
+                ?: "Km"
+            else context?.getString(R.string.mi) ?: "Mi"
 
         val marsDistance = roadster.marsDistance.roundToInt()
         val earthDistance = roadster.earthDistance.roundToInt()
 
         textView_roadster_to_mars_distance.text = HtmlCompat.fromHtml(
-            "<b>Mars distance:</b> $marsDistance $unitEnding",
+            "${
+                context?.getString(R.string.mars_distance)?.toBoldHtml()
+            }: $marsDistance $unitEnding",
             HtmlCompat.FROM_HTML_MODE_LEGACY
         )
 
         textView_roadster_to_earth_distance.text = HtmlCompat.fromHtml(
-            "<b>Earth distance:</b> $earthDistance $unitEnding",
+            "${
+                context?.getString(R.string.earth_distance)?.toBoldHtml()
+            } $earthDistance $unitEnding",
             HtmlCompat.FROM_HTML_MODE_LEGACY
         )
     }

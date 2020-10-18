@@ -29,11 +29,6 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
         setThemePreference()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Settings"
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
-    }
 
     private fun setThemePreference() {
         themePreference?.onPreferenceChangeListener =

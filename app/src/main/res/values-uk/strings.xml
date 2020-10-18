@@ -1,0 +1,41 @@
+<resources>
+    <!--    Commons strings-->
+    <string name="app_name">SpaceX Tracker</string>
+    <string name="settings">Налаштування</string>
+    <string name="all">Всі запуски</string>
+    <string name="next_launch">Найближчий запуск</string>
+    <string name="roadster">Роадстер</string>
+    <string name="loading">Завантаження</string>
+
+    <!--    Launch details strings-->
+    <string name="mission_details">Деталі запуску</string>
+    <string name="payload_details">Деталі вантажу</string>
+    <string name="links">Посилання</string>
+    <string name="webcast">Пряма трансляція</string>
+    <string name="article">Стаття</string>
+
+    <!--    Payload details-->
+    <string name="name">Назва</string>
+    <string name="type">Тип</string>
+    <string name="manufacturers">Виробник</string>
+    <string name="customers">Замовник</string>
+    <string name="mass">Маса</string>
+    <string name="kg">Кг</string>
+    <string name="km">Км</string>
+    <string name="mi">миль</string>
+    <string name="lbs">фнт</string>
+    <string name="mars_distance">Відстань до Марсу</string>
+    <string name="earth_distance">Відстань до Землі</string>
+    <string name="no_info">Немає даних</string>
+    <string name="default_theme">За замовчуванням</string>
+    <string name="general">Загальні</string>
+    <string name="theme">Тема</string>
+    <string name="units">Одиниці вміру</string>
+    <string name="unit_system">"Система одиниць "</string>
+    <string name="metric">Метрична</string>
+    <string name="imperial">Імперська</string>
+    <string name="light_theme">Світла</string>
+    <string name="dark_theme">Темна</string>
+    <string name="launch_date">Дата запуску:</string>
+
+</resources>

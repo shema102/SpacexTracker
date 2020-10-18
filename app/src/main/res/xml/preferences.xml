@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="General">
+    <PreferenceCategory android:title="@string/general">
         <ListPreference
             android:entries="@array/themeEntries"
             android:entryValues="@array/themeValues"
             android:defaultValue="MODE_NIGHT_NO"
             android:key="THEME_PREFERENCES"
             android:summary="%s"
-            android:title="Theme" />
+            android:title="@string/theme" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Units">
+    <PreferenceCategory android:title="@string/units">
         <ListPreference
             android:defaultValue="METRIC"
             android:entries="@array/unitSystemEntries"
             android:entryValues="@array/unitSystemValues"
             android:key="UNIT_SYSTEM"
             android:summary="%s"
-            android:title="Unit system" />
+            android:title="@string/unit_system" />
     </PreferenceCategory>
 </PreferenceScreen>

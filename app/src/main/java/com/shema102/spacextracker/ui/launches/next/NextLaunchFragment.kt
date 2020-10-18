@@ -126,7 +126,7 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
 
     private fun List<Payload>.toPayloadItems(): List<PayloadItem> {
         return this.map {
-            PayloadItem(it, unitProvider)
+            PayloadItem(it, unitProvider, context)
         }
     }
 
