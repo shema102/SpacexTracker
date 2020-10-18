@@ -60,7 +60,7 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
             group_loading.visibility = View.GONE
             textView_mission_name.text = it.name
             updateLaunchDate(it)
-            textView_mission_details_text.text = it.details ?: "No info"
+            textView_mission_details_text.text = it.details ?: context?.getString(R.string.no_info)
 
             if (it.payloadsList.isNotEmpty()) {
                 initPayloadRecyclerView(it.payloadsList.toPayloadItems())
