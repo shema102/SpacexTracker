@@ -1,10 +1,16 @@
 package com.shema102.spacextracker.ui.launches.roadster
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
+import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.data.repository.SpacexRepository
 import com.shema102.spacextracker.internal.UnitSystem
-import com.shema102.spacextracker.internal.lazyDeferred
+import kotlinx.coroutines.runBlocking
 
 class RoadsterViewModel(
     private val spacexRepository: SpacexRepository,
@@ -12,10 +18,28 @@ class RoadsterViewModel(
 ) : ViewModel() {
     private val unitSystem = unitProvider.getUnitSystem()
 
-    val isMetric: Boolean
+    private val isMetric: Boolean
         get() = unitSystem == UnitSystem.METRIC
 
-    val roadster by lazyDeferred {
-        spacexRepository.getRoadster(isMetric)
+
+    val roadster: LiveData<out UnitSpecificRoadster?>
+        get() = runBlocking{ spacexRepository.getRoadster(isMetric) }
+
+    val roadsterDetails = Transformations.map(roadster){ it?.details }
+
+    val roadsterImages = Transformations.map(roadster){ it?.images }
+
+    companion object{
+        @JvmStatic
+        @BindingAdapter("imageUrl")
+        fun loadImage(view: ImageView, imageUrl: List<String>?){
+            if (imageUrl != null) {
+                Glide.with(view.context)
+                    .load(
+                        imageUrl.random()
+                    )
+                    .into(view)
+            }
+        }
     }
 }

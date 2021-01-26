@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
 import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.provider.UnitProvider
+import com.shema102.spacextracker.databinding.RoadsterFragmentBinding
 import com.shema102.spacextracker.internal.UnitSystem
 import com.shema102.spacextracker.internal.toBoldHtml
 import com.shema102.spacextracker.ui.base.ScopedFragment
@@ -37,40 +39,34 @@ class RoadsterFragment : ScopedFragment(), KodeinAware {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.roadster_fragment, container, false)
+
+        val binding: RoadsterFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.roadster_fragment, container, false
+        )
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RoadsterViewModel::class.java)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(RoadsterViewModel::class.java)
 
         bindUi()
     }
 
     private fun bindUi() = launch {
-        val roadster = viewModel.roadster.await()
+        val roadster = viewModel.roadster
         roadster.observe(viewLifecycleOwner, {
             group_loading.visibility = View.GONE
             if (it == null) return@observe
-            updateRoadsterImage(it)
-            updateRoadsterDetails(it)
             updateDistances(it)
             updateLinks(it)
             contentGroup.visibility = View.VISIBLE
         })
-    }
-
-    private fun updateRoadsterImage(roadster: UnitSpecificRoadster) {
-        Glide.with(this)
-            .load(
-                roadster.images.random()
-            )
-            .into(imageView_roadster_banner)
-    }
-
-    private fun updateRoadsterDetails(roadster: UnitSpecificRoadster) {
-        textView_roadster_details.text = roadster.details
     }
 
     private fun updateDistances(roadster: UnitSpecificRoadster) {
