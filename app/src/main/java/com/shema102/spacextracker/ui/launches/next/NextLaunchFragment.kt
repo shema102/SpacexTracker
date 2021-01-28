@@ -12,9 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
+import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
+import com.shema102.spacextracker.di.factory.NextLaunchViewModelFactory
 import com.shema102.spacextracker.internal.makeVisible
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.shema102.spacextracker.ui.launches.common.PayloadItem
@@ -22,20 +24,19 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.launch_details_fragment.*
 import kotlinx.coroutines.launch
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
 import java.text.DateFormat
 import java.util.*
+import javax.inject.Inject
 
-class NextLaunchFragment : ScopedFragment(), KodeinAware {
-    override val kodein by closestKodein()
+class NextLaunchFragment : ScopedFragment() {
 
-    private val viewModelFactory: NextLaunchViewModelFactory by instance()
+    @Inject
+    lateinit var viewModelFactory: NextLaunchViewModelFactory
 
     private lateinit var viewModel: NextLaunchViewModel
 
-    private val unitProvider: UnitProvider by instance()
+    @Inject
+    lateinit var unitProvider: UnitProvider
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +47,17 @@ class NextLaunchFragment : ScopedFragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        injectDagger()
+
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(NextLaunchViewModel::class.java)
         bindUi()
 
+    }
+
+    private fun injectDagger(){
+        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun bindUi() = launch {

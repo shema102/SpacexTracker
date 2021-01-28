@@ -1,4 +1,4 @@
-package com.shema102.spacextracker.data.db
+package com.shema102.spacextracker.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

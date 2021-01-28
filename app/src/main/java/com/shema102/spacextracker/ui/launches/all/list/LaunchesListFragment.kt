@@ -9,20 +9,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shema102.spacextracker.R
+import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
+import com.shema102.spacextracker.di.factory.LaunchesListViewModelFactory
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.xwray.groupie.GroupAdapter
 import kotlinx.android.synthetic.main.launches_list_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
+import javax.inject.Inject
 
-class LaunchesListFragment : ScopedFragment(), KodeinAware {
-    override val kodein by closestKodein()
+class LaunchesListFragment : ScopedFragment() {
 
-    private val viewModelFactory: LaunchesListViewModelFactory by instance()
+    @Inject
+    lateinit var viewModelFactory: LaunchesListViewModelFactory
 
     private lateinit var viewModel: LaunchesListViewModel
 
@@ -35,11 +35,18 @@ class LaunchesListFragment : ScopedFragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        injectDagger()
+
         viewModel =
             ViewModelProvider(this, viewModelFactory)
                 .get(LaunchesListViewModel::class.java)
 
         bindUi()
+    }
+
+    private fun injectDagger(){
+        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun bindUi() = launch(Dispatchers.Main) {

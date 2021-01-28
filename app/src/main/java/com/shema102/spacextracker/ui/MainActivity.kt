@@ -10,23 +10,23 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.shema102.spacextracker.R
+import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.provider.ThemeProvider
 import kotlinx.android.synthetic.main.activity_main.*
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.closestKodein
-import org.kodein.di.generic.instance
+import javax.inject.Inject
 
-class MainActivity: AppCompatActivity(), KodeinAware {
-    override val kodein: Kodein by closestKodein()
+class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-    private val themeProvider: ThemeProvider by instance()
+    @Inject
+    lateinit var themeProvider: ThemeProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        injectDagger()
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottom_navigation.setupWithNavController(navController)
@@ -35,7 +35,11 @@ class MainActivity: AppCompatActivity(), KodeinAware {
         setTheme()
     }
 
-    private fun setTheme(){
+    private fun injectDagger(){
+        SpacexApplication.instance.applicationComponent.inject(this)
+    }
+
+    private fun setTheme() {
         val theme = themeProvider.getThemeFromPreferences()
         AppCompatDelegate.setDefaultNightMode(theme)
     }

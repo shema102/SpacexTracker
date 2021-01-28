@@ -6,9 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.shema102.spacextracker.data.db.entity.*
 import com.shema102.spacextracker.internal.NoConnectivityException
 import org.threeten.bp.ZonedDateTime
+import javax.inject.Inject
 
 
-class SpacexNetworkDataSourceImpl(
+class SpacexNetworkDataSourceImpl @Inject constructor(
     private val spacexApiService: SpacexApiService
 ) : SpacexNetworkDataSource {
 

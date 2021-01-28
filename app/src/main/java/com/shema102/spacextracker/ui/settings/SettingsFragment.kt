@@ -4,25 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.shema102.spacextracker.R
+import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.provider.ThemeProvider
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
+import javax.inject.Inject
 
-class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
-    override val kodein by closestKodein()
+class SettingsFragment : PreferenceFragmentCompat() {
 
     private val themePreference by lazy {
         findPreference<ListPreference>(getString(R.string.theme_preferences_key))
     }
 
-    private val themeProvider: ThemeProvider by instance()
+    @Inject
+    lateinit var themeProvider: ThemeProvider
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences)
@@ -47,9 +45,15 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        injectDagger()
+
         val view = super.onCreateView(inflater, container, savedInstanceState)
         setColors(view)
         return view
+    }
+
+    private fun injectDagger(){
+        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun setColors(view: View?){

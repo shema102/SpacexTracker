@@ -1,9 +1,9 @@
 package com.shema102.spacextracker.data.repository
 
 import androidx.lifecycle.LiveData
-import com.shema102.spacextracker.data.db.LaunchesDao
-import com.shema102.spacextracker.data.db.NextLaunchDao
-import com.shema102.spacextracker.data.db.RoadsterDao
+import com.shema102.spacextracker.data.db.dao.LaunchesDao
+import com.shema102.spacextracker.data.db.dao.NextLaunchDao
+import com.shema102.spacextracker.data.db.dao.RoadsterDao
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.RoadsterEntry
@@ -14,8 +14,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.threeten.bp.ZonedDateTime
+import javax.inject.Inject
 
-class SpacexRepositoryImpl(
+class SpacexRepositoryImpl @Inject constructor(
     private val roadsterDao: RoadsterDao,
     private val nextLaunchDao: NextLaunchDao,
     private val launchesDao: LaunchesDao,

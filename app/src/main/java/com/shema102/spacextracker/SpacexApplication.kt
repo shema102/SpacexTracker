@@ -2,67 +2,36 @@ package com.shema102.spacextracker
 
 import android.app.Application
 import androidx.preference.PreferenceManager
-import com.shema102.spacextracker.data.db.SpacexDatabase
-import com.shema102.spacextracker.data.network.*
-import com.shema102.spacextracker.data.repository.SpacexRepository
-import com.shema102.spacextracker.data.repository.SpacexRepositoryImpl
-import com.shema102.spacextracker.ui.launches.all.list.LaunchesListViewModelFactory
-import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModelFactory
-import com.shema102.spacextracker.ui.launches.roadster.RoadsterViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.shema102.spacextracker.data.provider.ThemeProvider
-import com.shema102.spacextracker.data.provider.ThemeProviderImpl
-import com.shema102.spacextracker.data.provider.UnitProvider
-import com.shema102.spacextracker.data.provider.UnitProviderImpl
-import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsViewModelFactory
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.androidXModule
-import org.kodein.di.generic.*
+import com.shema102.spacextracker.di.component.ApplicationComponent
+import com.shema102.spacextracker.di.component.DaggerApplicationComponent
+import com.shema102.spacextracker.di.module.LaunchesModule
+import com.shema102.spacextracker.di.module.DataSourceModule
+import com.shema102.spacextracker.di.module.DatabaseModule
+import com.shema102.spacextracker.di.module.ThemeProviderModule
+import com.shema102.spacextracker.di.module.UnitProviderModule
 
-class SpacexApplication : Application(), KodeinAware {
-    override val kodein = Kodein.lazy {
-        import(androidXModule(this@SpacexApplication))
+class SpacexApplication : Application(){
 
-        bind() from singleton { SpacexDatabase(instance()) }
-        bind() from singleton { instance<SpacexDatabase>().roadsterDao() }
-        bind() from singleton { instance<SpacexDatabase>().nextLaunchDao() }
-        bind() from singleton { instance<SpacexDatabase>().launchesDao() }
-        bind<ConnectivityInterceptor>() with singleton {
-            ConnectivityInterceptorImpl(instance())
-        }
-        bind() from singleton { SpacexApiService(instance()) }
-        bind<SpacexNetworkDataSource>() with singleton {
-            SpacexNetworkDataSourceImpl(instance())
-        }
-        bind<SpacexRepository>() with singleton {
-            SpacexRepositoryImpl(
-                instance(),
-                instance(),
-                instance(),
-                instance()
-            )
-        }
-        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
-
-        bind<ThemeProvider>() with singleton { ThemeProviderImpl(instance()) }
-
-//        bind() from provider { SettingsFragment(instance()) }
-
-        bind() from provider { RoadsterViewModelFactory(instance(), instance()) }
-        bind() from provider { NextLaunchViewModelFactory(instance()) }
-        bind() from provider { LaunchesListViewModelFactory(instance()) }
-        bind() from factory { launchId: String ->
-            LaunchDetailsViewModelFactory(
-                launchId,
-                instance()
-            )
-        }
+    companion object {
+        lateinit var instance: SpacexApplication
     }
+
+    lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
+
+        applicationComponent = DaggerApplicationComponent.builder()
+            .unitProviderModule(UnitProviderModule(this))
+            .themeProviderModule(ThemeProviderModule(this))
+            .dataSourceModule(DataSourceModule(this))
+            .databaseModule(DatabaseModule(this))
+            .launchesModule(LaunchesModule()).build()
+
         AndroidThreeTen.init(this)
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

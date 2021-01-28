@@ -1,10 +1,14 @@
-package com.shema102.spacextracker.ui.launches.next
+package com.shema102.spacextracker.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.shema102.spacextracker.data.repository.SpacexRepository
+import com.shema102.spacextracker.ui.launches.next.NextLaunchViewModel
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NextLaunchViewModelFactory(
+@Singleton
+class NextLaunchViewModelFactory @Inject constructor(
     private val spacexRepository: SpacexRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 

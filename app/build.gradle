@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
-def keystorePropertiesFile = rootProject.file("keystore.properties");
+def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
@@ -114,10 +114,6 @@ dependencies {
 
     // Better dateTime-time support even on older Android versions
     implementation "com.jakewharton.threetenabp:threetenabp:1.2.4"
-
-    // Kodein
-    implementation "org.kodein.di:kodein-di-generic-jvm:6.5.5"
-    implementation "org.kodein.di:kodein-di-framework-android-x:6.5.5"
 
     // Dagger 2
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"

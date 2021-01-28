@@ -12,9 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
+import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
+import com.shema102.spacextracker.di.factory.LaunchDetailsViewModelFactory
 import com.shema102.spacextracker.internal.IdNotFoundException
 import com.shema102.spacextracker.internal.makeVisible
 import com.shema102.spacextracker.ui.base.ScopedFragment
@@ -23,22 +25,16 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.launch_details_fragment.*
 import kotlinx.coroutines.launch
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.factory
-import org.kodein.di.generic.instance
 import java.text.DateFormat
 import java.util.*
+import javax.inject.Inject
 
-class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
-    override val kodein by closestKodein()
-
-    private val viewModelFactoryInstanceFactory
-            : ((String) -> LaunchDetailsViewModelFactory) by factory()
+class LaunchDetailsFragment : ScopedFragment() {
 
     private lateinit var viewModel: LaunchDetailsViewModel
 
-    private val unitProvider: UnitProvider by instance()
+    @Inject
+    lateinit var unitProvider: UnitProvider
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +51,19 @@ class LaunchDetailsFragment : ScopedFragment(), KodeinAware {
         }
         val launchId: String = safeArgs?.idString ?: throw IdNotFoundException()
 
-        viewModel = ViewModelProvider(this, viewModelFactoryInstanceFactory(launchId)).get(
+        injectDagger()
+
+        val viewModelFactory = LaunchDetailsViewModelFactory(launchId)
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(
             LaunchDetailsViewModel::class.java
         )
 
         bindUi()
+    }
+
+    private fun injectDagger() {
+        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun bindUi() = launch {
