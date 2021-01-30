@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
@@ -23,11 +22,14 @@ import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.shema102.spacextracker.ui.launches.common.PayloadItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.launch_details_fragment.*
 import kotlinx.coroutines.launch
 import java.text.DateFormat
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Qualifier
+
 
 class LaunchDetailsFragment : ScopedFragment() {
 
@@ -35,6 +37,9 @@ class LaunchDetailsFragment : ScopedFragment() {
 
     @Inject
     lateinit var unitProvider: UnitProvider
+
+    @Inject
+    lateinit var viewModelFactory: LaunchDetailsViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,21 +54,17 @@ class LaunchDetailsFragment : ScopedFragment() {
         val safeArgs = arguments?.let {
             LaunchDetailsFragmentArgs.fromBundle(it)
         }
-        val launchId: String = safeArgs?.idString ?: throw IdNotFoundException()
+        val launchId = safeArgs?.idString ?: throw IdNotFoundException()
 
-        injectDagger()
-
-        val viewModelFactory = LaunchDetailsViewModelFactory(launchId)
+        AndroidSupportInjection.inject(this)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(
             LaunchDetailsViewModel::class.java
         )
 
-        bindUi()
-    }
+        viewModel.launchId = launchId
 
-    private fun injectDagger() {
-        SpacexApplication.instance.applicationComponent.inject(this)
+        bindUi()
     }
 
     private fun bindUi() = launch {

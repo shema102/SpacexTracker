@@ -6,6 +6,7 @@ import com.shema102.spacextracker.data.db.dao.RoadsterDao
 import com.shema102.spacextracker.data.network.SpacexNetworkDataSource
 import com.shema102.spacextracker.data.repository.SpacexRepository
 import com.shema102.spacextracker.data.repository.SpacexRepositoryImpl
+import com.shema102.spacextracker.ui.launches.all.details.LaunchDetailsFragment
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

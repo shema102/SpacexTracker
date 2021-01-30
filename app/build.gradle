@@ -126,6 +126,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 
     // Groupie
     implementation "com.xwray:groupie:2.1.0"

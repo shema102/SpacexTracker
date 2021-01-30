@@ -10,9 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.unitlocalized.UnitSpecificRoadster
 import com.shema102.spacextracker.data.provider.UnitProvider
 import com.shema102.spacextracker.databinding.RoadsterFragmentBinding
@@ -20,6 +19,7 @@ import com.shema102.spacextracker.di.factory.RoadsterViewModelFactory
 import com.shema102.spacextracker.internal.UnitSystem
 import com.shema102.spacextracker.internal.toBoldHtml
 import com.shema102.spacextracker.ui.base.ScopedFragment
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.roadster_fragment.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,7 +30,7 @@ class RoadsterFragment : ScopedFragment() {
     @Inject
     lateinit var viewModelFactory: RoadsterViewModelFactory
 
-    private lateinit var viewModel: RoadsterViewModel
+    private val viewModel: RoadsterViewModel by viewModels { viewModelFactory }
 
     @Inject
     lateinit var unitProvider: UnitProvider
@@ -44,9 +44,7 @@ class RoadsterFragment : ScopedFragment() {
             inflater, R.layout.roadster_fragment, container, false
         )
 
-        injectDagger()
-
-        viewModel = ViewModelProvider(this, viewModelFactory).get(RoadsterViewModel::class.java)
+        AndroidSupportInjection.inject(this)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
@@ -60,9 +58,6 @@ class RoadsterFragment : ScopedFragment() {
         bindUi()
     }
 
-    private fun injectDagger(){
-        SpacexApplication.instance.applicationComponent.inject(this)
-    }
 
     private fun bindUi() = launch {
         val roadster = viewModel.roadster

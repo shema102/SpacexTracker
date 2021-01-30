@@ -5,15 +5,15 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.LaunchEntry
 import com.shema102.spacextracker.di.factory.LaunchesListViewModelFactory
 import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.xwray.groupie.GroupAdapter
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.launches_list_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class LaunchesListFragment : ScopedFragment() {
     @Inject
     lateinit var viewModelFactory: LaunchesListViewModelFactory
 
-    private lateinit var viewModel: LaunchesListViewModel
+    private val viewModel: LaunchesListViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +36,9 @@ class LaunchesListFragment : ScopedFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        injectDagger()
-
-        viewModel =
-            ViewModelProvider(this, viewModelFactory)
-                .get(LaunchesListViewModel::class.java)
+        AndroidSupportInjection.inject(this)
 
         bindUi()
-    }
-
-    private fun injectDagger(){
-        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun bindUi() = launch(Dispatchers.Main) {

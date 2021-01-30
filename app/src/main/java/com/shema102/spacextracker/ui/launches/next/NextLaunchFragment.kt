@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.db.entity.NextLaunchEntry
 import com.shema102.spacextracker.data.db.entity.Payload
 import com.shema102.spacextracker.data.provider.UnitProvider
@@ -22,6 +21,7 @@ import com.shema102.spacextracker.ui.base.ScopedFragment
 import com.shema102.spacextracker.ui.launches.common.PayloadItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.launch_details_fragment.*
 import kotlinx.coroutines.launch
 import java.text.DateFormat
@@ -33,7 +33,7 @@ class NextLaunchFragment : ScopedFragment() {
     @Inject
     lateinit var viewModelFactory: NextLaunchViewModelFactory
 
-    private lateinit var viewModel: NextLaunchViewModel
+    private val viewModel: NextLaunchViewModel by viewModels { viewModelFactory }
 
     @Inject
     lateinit var unitProvider: UnitProvider
@@ -48,17 +48,12 @@ class NextLaunchFragment : ScopedFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        injectDagger()
+        AndroidSupportInjection.inject(this)
 
-        viewModel =
-            ViewModelProvider(this, viewModelFactory).get(NextLaunchViewModel::class.java)
         bindUi()
 
     }
 
-    private fun injectDagger(){
-        SpacexApplication.instance.applicationComponent.inject(this)
-    }
 
     private fun bindUi() = launch {
         val nextLaunch = viewModel.nextLaunch.await()

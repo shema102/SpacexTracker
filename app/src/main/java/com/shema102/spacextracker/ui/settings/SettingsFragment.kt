@@ -9,8 +9,8 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.shema102.spacextracker.R
-import com.shema102.spacextracker.SpacexApplication
 import com.shema102.spacextracker.data.provider.ThemeProvider
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -45,15 +45,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        injectDagger()
+        AndroidSupportInjection.inject(this)
 
         val view = super.onCreateView(inflater, container, savedInstanceState)
         setColors(view)
         return view
-    }
-
-    private fun injectDagger(){
-        SpacexApplication.instance.applicationComponent.inject(this)
     }
 
     private fun setColors(view: View?){
